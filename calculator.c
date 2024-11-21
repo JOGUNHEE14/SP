@@ -82,6 +82,7 @@ char queuepop() {
 }
 
 
+
 int main(void)
 {
         char x; //입력을 하나하나 받을 때 쓸 문자열 타입변수
