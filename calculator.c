@@ -97,7 +97,7 @@ int main(void)
                         push(operator, x);
                 }
 
-                // 그 외의 상황에는 스택에 연산자를 가능한 만큼 pop하고 연산자 push
+                // 넣을 연산자랑 스택에 연산자의 우선순위가 작거나 같으면 가능한 만큼 pop하고 연산자 push
                 else {
                         while (operator -> next != NULL) {
                                 if (priority(operator, x) == 2)
