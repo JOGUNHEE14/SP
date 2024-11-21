@@ -62,7 +62,7 @@ int main(void)
 {
         char x; //입력을 하나하나 받을 때 쓸 문자열 타입변수
         int l = 0; // 괄호가 스택에 있는지 확인할 때 쓸 변수
-        struct stackNode *operator = malloc(sizeof(struct stackNode)); // 스택을 처음 만들 때 operator를 사용해서 push할 예정정
+        struct stackNode *operator = malloc(sizeof(struct stackNode)); // 스택을 처음 만들 때 operator를 사용해서 push할 예정
 
         operator -> next = NULL; // operator가 가라키는 포인터 초기화
 
