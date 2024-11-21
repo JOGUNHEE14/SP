@@ -21,6 +21,7 @@ struct queueNode {
 };
 
 //연산자 비교하는 코드 -,+를 같은 레벨, *,/ 를 같은 레벨로 만들고 result와 com에 저장된 연산자 비교해서 리턴
+// 아스키 코드 ( *: 42, +: 43, -: 45, /:47)
 int priority(struct stackNode *target, char com) {
         char result = (target -> next) -> data;
         if (result =='*')
