@@ -61,7 +61,7 @@ char pop(struct stackNode *target)
 int main(void)
 {
         char x; //입력을 하나하나 받을 때 쓸 문자열 타입변수
-        int l = 0; // 괄호가 스택에 있는지 확인할 때 쓸 변수
+        int gwalho = 0; // 괄호가 스택에 있는지 확인할 때 쓸 변수
         struct stackNode *operator = malloc(sizeof(struct stackNode)); // 스택을 처음 만들 때 operator를 사용해서 push할 예정
 
         operator -> next = NULL; // operator가 가라키는 포인터 초기화
@@ -83,17 +83,17 @@ int main(void)
                                        break;
                                printf("%c ", oper);
                         }
-                        l-=1;
+                        gwalho-=1;
                 }
 
                 // 여는 괄호가 들어오면 l번의 값을 늘림
                 else if (x == '(') { 
                         push(operator, x);
-                        l+=1;
+                        gwalho+=1;
                 }
 
                 // 여는 괄호가 주어지면 계속 연산자를 넣어야하기 때문에 l이 0이 아니고 스택의 마지막에 저장된 연산자보다 넣을 연산자가 크면 push
-                else if (l != 0 || operator -> next == NULL || priority(operator, x) == 2) {
+                else if (gwalho != 0 || operator -> next == NULL || priority(operator, x) == 2) {
                         push(operator, x);
                 }
 
