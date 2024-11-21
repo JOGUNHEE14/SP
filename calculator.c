@@ -71,11 +71,19 @@ char stackpop(struct stackNode *target)
         return popData;
 }
 
-void listpush() {
+void listrpush() {
 
 }
 
-char listpop() {
+void listlpush() {
+
+}
+
+char listrpop() {
+
+}
+
+char listlpop() {
 
 }
 
