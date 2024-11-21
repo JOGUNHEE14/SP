@@ -17,7 +17,13 @@ struct listNode {
 //숫자를 저장한 list노드랑 다음 queueNode를 하는 노드
 struct queueNode {
         struct queueNode *next;
+        struct inforNode *data;
+};
+
+// 큐에 infroNode를 저장해서 사용할 예정. 숫자면 head부분에 주소저장, 연산자면 data에 저장.
+struct inforNode {
         struct listNode *head;
+        char data;
 };
 
 //연산자 비교하는 코드 -,+를 같은 레벨, *,/ 를 같은 레벨로 만들고 result와 com에 저장된 연산자 비교해서 리턴
