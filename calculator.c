@@ -14,6 +14,12 @@ struct listNode {
         char data;
 };
 
+//숫자를 저장한 list노드랑 다음 queueNode를 하는 노드
+struct queueNode {
+        struct queueNode *next;
+        struct listNode *head;
+};
+
 //연산자 비교하는 코드 -,+를 같은 레벨, *,/ 를 같은 레벨로 만들고 result와 com에 저장된 연산자 비교해서 리턴
 int priority(struct stackNode *target, char com) {
         char result = (target -> next) -> data;
