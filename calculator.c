@@ -42,7 +42,7 @@ int priority(struct stackNode *target, char com) {
 }
 
 //노드를 추가하는 함수
-void Stackpush(struct stackNode *target, char data)
+void stackpush(struct stackNode *target, char data)
 {
         struct stackNode *pushNode = malloc(sizeof(struct stackNode));
 
@@ -52,7 +52,7 @@ void Stackpush(struct stackNode *target, char data)
 }
 
 //노드에 저장된 데이터를 리턴하고 저장공간 해제
-char Stackpop(struct stackNode *target)
+char stackpop(struct stackNode *target)
 {
         char popData;
         struct stackNode *popNode = target -> next;
@@ -85,7 +85,7 @@ int main(void)
                 // 닫는 괄호가 입력으로 들어오면 여는 괄호가 나올 때 까지 연산자 꺼내기
                 else if (x == ')') {  
                         while (operator -> next != NULL) {
-                               char oper = Stackpop(operator);
+                               char oper = stackpop(operator);
                                if (oper == '(')
                                        break;
                                printf("%c ", oper);
@@ -95,13 +95,13 @@ int main(void)
 
                 // 여는 괄호가 들어오면 l번의 값을 늘림
                 else if (x == '(') { 
-                        Stackpush(operator, x);
+                        stackpush(operator, x);
                         gwalho+=1;
                 }
 
                 // 여는 괄호가 주어지면 계속 연산자를 넣어야하기 때문에 l이 0이 아니고 스택의 마지막에 저장된 연산자보다 넣을 연산자가 크면 push
                 else if (gwalho != 0 || operator -> next == NULL || priority(operator, x) == 2) {
-                        Stackpush(operator, x);
+                        stackpush(operator, x);
                 }
 
                 // 넣을 연산자랑 스택에 연산자의 우선순위가 작거나 같으면 가능한 만큼 pop하고 연산자 push
@@ -111,11 +111,11 @@ int main(void)
                                         break;
                                 printf("%c ", pop(operator));
                         }
-                        Stackpush(operator, x);
+                        stackpush(operator, x);
                 }
         }
         while (operator -> next != NULL)
-                printf("%c ",Stackpop(operator));
+                printf("%c ",stackpop(operator));
         printf("\n");
         return 0;
 }
