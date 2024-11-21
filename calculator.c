@@ -14,7 +14,7 @@ struct listNode {
         char data;
 };
 
-//연산자 비교하는 코드 -,+를 같은 레벨, *,/ 를 같은 레벨로 만들고 result와 com에 저장된 연산자 비교해서 리턴턴
+//연산자 비교하는 코드 -,+를 같은 레벨, *,/ 를 같은 레벨로 만들고 result와 com에 저장된 연산자 비교해서 리턴
 int priority(struct stackNode *target, char com) {
         char result = (target -> next) -> data;
         if (result =='*')
@@ -86,18 +86,18 @@ int main(void)
                         l-=1;
                 }
 
-                // 여는 괄호가 들어오면 l변의 값을 늘림
+                // 여는 괄호가 들어오면 l번의 값을 늘림
                 else if (x == '(') { 
                         push(operator, x);
                         l+=1;
                 }
 
-                // 여는 괄호가 주워지면 계속 연산자를 넣어야하기 때문에 l이 0이 아니고 스택의 마지막에 저장된 연산자보다 넣을 연산자가 크면 push
+                // 여는 괄호가 주어지면 계속 연산자를 넣어야하기 때문에 l이 0이 아니고 스택의 마지막에 저장된 연산자보다 넣을 연산자가 크면 push
                 else if (l != 0 || operator -> next == NULL || priority(operator, x) == 2) {
                         push(operator, x);
                 }
 
-                // 그 외의 상황에는 스택에 연산자를 가능한만큼 pop하고 연산자 push
+                // 그 외의 상황에는 스택에 연산자를 가능한 만큼 pop하고 연산자 push
                 else {
                         while (operator -> next != NULL) {
                                 if (priority(operator, x) == 2)
