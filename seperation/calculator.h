@@ -9,7 +9,7 @@ struct stackNode {
 
 //숫자 넣을 노드
 struct listNode {
-        struct listNode *previous;
+        struct listNode *previous; // 숫자리스트의 head의 previous 부분에 임시적으로 소수점 시작위치를 저장함
         struct listNode *next;
         char data;
 };
