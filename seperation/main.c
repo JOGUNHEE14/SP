@@ -10,7 +10,8 @@ int main(void)
 
         printf("Input: \n");
 
-        while ((x = getchar()) != '\n') {
+        while (1) {
+                char x = getchar();
                 if (x == ' '); // 대충 공백처리
 
                 // 대충 숫자면 프린트 -> 숫자를 리스트노드를 이용해서 저장해야함
