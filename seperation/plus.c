@@ -1,6 +1,6 @@
 #include "calculator.h"
 
-void plus(struct listNode *front, struct listNode *rear)
+struct listNode plus(struct listNode *front, struct listNode *rear)
 {
         struct listNode *head = malloc(sizeof(struct listNode));
         char alpha = '0';
