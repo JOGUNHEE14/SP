@@ -14,9 +14,9 @@ void plus(struct listNode *front, struct listNode *rear)
                         break;
 
 
-                listlpush(head,(x+y+alpha-152)%10+48);
+                listlpush(head,(x+y+alpha-144)%10+48);
 
-                if (x+y+alpha-152 >= 10)
+                if (x+y+alpha-144 >= 10)
                         alpha = '1';
                 else
                         alpha = '0';
