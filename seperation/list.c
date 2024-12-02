@@ -40,4 +40,14 @@ char listrpop(struct listNode *target)
 
 char listlpop(struct listNode *target)
 {
+        char popData;
+        struct listNode *popNode = target -> next;
+        struct listNode *nextNode = popNode -> next;
+
+        nextNode->previous = target;
+        target -> next = nextNode;
+
+        free(popNode);
+
+        return popData;
 }
