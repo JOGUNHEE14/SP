@@ -14,13 +14,13 @@ void listrpush(struct listNode *target, char data)
 void listlpush(struct listNode *target, char data)
 {
         struct listNode *pushNode = malloc(sizeof(struct listNode));
-        struct listNode *preNode = tartget -> previous;
+        struct listNode *nextNode = target -> next;
 
-        pushNode ->next = target;
-        pushNode ->previous = preNode;
+        pushNode ->previous = target;
+        pushNode ->next = preNode;
 
-        preNode->next = pushNode;
-        target->previous = pushNode;
+        preNode->previous = pushNode;
+        target->next = pushNode;
 }
 
 char listrpop(struct listNode *target)
