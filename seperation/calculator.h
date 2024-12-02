@@ -22,7 +22,10 @@ struct queueNode {
 
 // 큐에 infroNode를 저장해서 사용할 예정. 숫자면 head부분에 주소저장, 연산자면 data에 저장.
 struct inforNode {
-        struct listNode *head;
+        struct listNode *natural_head;
+        struct listNode *natural_tail;
+        struct listNode *decimal_head;
+        struct listNode *decimal_tail;
         char data;
 };
 
