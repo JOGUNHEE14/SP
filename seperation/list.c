@@ -3,12 +3,12 @@
 void listrpush(struct listNode *target, char data)
 {
         struct listNode *pushNode = malloc(sizeof(struct listNode));
-        struct listNode *nextNode = target -> next;
+        struct listNode *pretNode = target -> previous;
 
-        pushNode -> next = nextNode;
-        pushNode -> previous = target;
-        target -> next = pushNode;                                                                                              
-        nextNode -> previous = pushNode;
+        pushNode -> next = target;
+        pushNode -> previous = preNode;
+        target -> previous = pushNode;                                                                                              
+        preNode -> next = pushNode;
 }
 
 void listlpush()
@@ -18,7 +18,18 @@ void listlpush()
 char listrpop(struct listNode *target)
 {
         char popData;
-        struct listNode *popNode = target -> next;
+        struct listNode *popNode = target -> previous;
+        struct listNode *preNode = popNode -> previous;
 
-        target -> next = listNode -> next;
-        listNode                                                                                                        ~                
+        preNode -> next = target;
+        target -> previous = preNode;
+        popData = popNode -> data;
+        
+        free(popNode);            
+
+        return popData;
+}
+
+char listlpop(struct listNode *target)
+{
+}
