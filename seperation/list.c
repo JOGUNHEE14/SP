@@ -31,10 +31,11 @@ void listlpush(struct listNode *target, char data)
 
 char listrpop(struct listNode *target)
 {
-        char popData;
         struct listNode *popNode = target -> previous;
         struct listNode *preNode = popNode -> previous;
 
+        char popData = popNode-> data;
+        
         preNode -> next = target;
         target -> previous = preNode;
         popData = popNode -> data;
@@ -46,10 +47,11 @@ char listrpop(struct listNode *target)
 
 char listlpop(struct listNode *target)
 {
-        char popData;
         struct listNode *popNode = target -> next;
         struct listNode *nextNode = popNode -> next;
 
+        char popData = popNode-> data;
+        
         nextNode->previous = target;
         target -> next = nextNode;
 
