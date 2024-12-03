@@ -17,7 +17,7 @@ void listlpush(struct listNode *target, char data)
         struct listNode *nextNode = target -> next;
 
         pushNode ->previous = target;
-        pushNode ->next = preNode;
+        pushNode ->next = nextNode;
 
         preNode->previous = pushNode;
         target->next = pushNode;
