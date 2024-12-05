@@ -4,7 +4,7 @@ void listrpush(struct listNode *target, char data)
 {
         struct listNode *pushNode = malloc(sizeof(struct listNode));
 
-        pushNode-> data = data
+        pushNode-> data = data;
         
         struct listNode *preNode = target -> previous;
 
@@ -18,7 +18,7 @@ void listlpush(struct listNode *target, char data)
 {
         struct listNode *pushNode = malloc(sizeof(struct listNode));
 
-        pushNode -> data = data
+        pushNode -> data = data;
         
         struct listNode *nextNode = target -> next;
 
