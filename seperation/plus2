@@ -1,0 +1,126 @@
+// listrpush: 리스트 앞에 값을 푸시하는 함수
+void listrpush(struct listNode** head, char data) {
+    struct listNode* newNode = malloc(sizeof(struct listNode));
+    newNode->data = data;
+    newNode->next = *head;
+    newNode->previous = NULL;
+
+    if (*head != NULL) {
+        (*head)->previous = newNode;
+    }
+    *head = newNode;
+}
+
+struct listNode* plus(struct inforNode* front, struct inforNode* rear) {
+    struct inforNode* result = malloc(sizeof(struct inforNode));
+    result->natural_head = NULL;
+    result->natural_tail = NULL;
+    result->decimal_head = NULL;
+    result->decimal_tail = NULL;
+
+    char alpha = '0';  // 자릿수더하기
+
+    // 1. 소수점 바로 뒤부터 겹치는 부분까지 새로운 리스트 노드에 푸시
+    struct listNode* decimalFront = front->decimal_head;
+    struct listNode* decimalRear = rear->decimal_head;
+
+    struct listNode* overFront = NULL;  // 새로운 front 리스트
+    struct listNode* overRear = NULL;   // 새로운 rear 리스트
+
+    // 겹치는 소수 부분 계산
+    while (decimalFront != NULL && decimalRear != NULL) {
+        char x = decimalFront->data;
+        char y = decimalRear->data;
+
+        // 겹치는소수부분 리스트에 x, y 푸시
+        listrpush(&overFront, x);
+        listrpush(&overRear, y);
+
+        // 다음 노드로 이동
+        decimalFront = decimalFront->next;
+        decimalRear = decimalRear->next;
+    }
+
+    // 2. 겹치는 소수부분 리스트 노드에서 앞부분부터 꺼내서 하나씩 계산
+    struct listNode* Ofront = overFront;
+    struct listNode* Orear = overRear;
+
+    while (Ofront != NULL && Orear != NULL) {
+        char x = Ofront->data;
+        char y = Orear->data;
+        char resultt = (x + y + alpha - 144) % 10 + 48;
+
+        // 계산된 결과를 결과 리스트에 추가
+        listrpush(&result->decimal_head, resultt);
+
+        // 자릿수 계산
+        alpha = (x + y + alpha - 144 >= 10) ? '1' : '0';
+
+        // 다음 노드로 이동
+        Ofront = Ofront->next;
+        Orear = Orear->next;
+    }
+
+    // 3. 남는 소수 부분 처리 (겹치지 않는 부분은 그대로 결과에 추가)
+    while (decimalFront != NULL) {
+        listrpush(&result->decimal_head, decimalFront->data);
+        decimalFront = decimalFront->next;
+    }
+
+    while (decimalRear != NULL) {
+        listrpush(&result->decimal_head, decimalRear->data);
+        decimalRear = decimalRear->next;
+    }
+
+    // 자연수 부분 계산
+    struct listNode* naturalFront = front->natural_tail;
+    struct listNode* naturalRear = rear->natural_tail;
+
+    while (naturalFront != NULL || naturalRear != NULL) {
+        char x = (naturalFront != NULL) ? naturalFront->data : '0';
+        char y = (naturalRear != NULL) ? naturalRear->data : '0';
+        char resultt = (x + y + alpha - 144) % 10 + 48;
+
+        listrpush(&result->natural_head, resultt);
+
+        alpha = (x + y + alpha - 144 >= 10) ? '1' : '0';
+
+        if (naturalFront != NULL) naturalFront = naturalFront->previous;
+        if (naturalRear != NULL) naturalRear = naturalRear->previous;
+    }
+
+    // 마지막 올림 처리
+    if (alpha == '1') {
+        listrpush(&result->natural_head, alpha);
+    }
+	
+    struct listNode* temp;
+    while (front->decimal_head != NULL) {
+        temp = front->decimal_head;
+        front->decimal_head = front->decimal_head->next;
+        free(temp); 
+    }
+
+    while (rear->decimal_head != NULL) {
+        temp = rear->decimal_head;
+        rear->decimal_head = rear->decimal_head->next;
+        free(temp);  
+    }
+
+    while (front->natural_head != NULL) {
+        temp = front->natural_head;
+        front->natural_head = front->natural_head->next;
+        free(temp);  
+    }
+
+    while (rear->natural_head != NULL) {
+        temp = rear->natural_head;
+        rear->natural_head = rear->natural_head->next;
+        free(temp); 
+    }
+	
+    free(front);
+    free(rear);	
+
+    return result->natural_head;
+}
