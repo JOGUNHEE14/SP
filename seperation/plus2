@@ -1,7 +1,7 @@
 #include "calculator.h"
 
 // listrpush: 리스트 앞에 값을 푸시하는 함수
-void listrpush(struct listNode** head, char data) {
+void listrpush(struct listNode* head, char data) {
     struct listNode* newNode = malloc(sizeof(struct listNode));
     newNode->data = data;
     newNode->next = *head;
