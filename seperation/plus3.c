@@ -1,4 +1,5 @@
 #include "calculator.h"
+//수정중임
 
 // listrpush: 리스트 앞에 값을 푸시하는 함수
 void listrpush(struct listNode* head, char data) {
