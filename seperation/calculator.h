@@ -33,4 +33,4 @@ struct inforNode {
 int priority(struct stackNode *target, char com);
 void stackpush(struct stackNode *target, char data);
 char stackpop(struct stackNode *target);
-void plus(struct listNode *front, struct listNode *rear);
+void plus(struct infoNode *front, struct infoNode *rear);
