@@ -1,12 +1,12 @@
 #include "calculator.c"
 
-void listrpush(struct infoNode *target, char data)
+void listrpush(struct listNode *target, char data)
 {
         struct listNode *pushNode = malloc(sizeof(struct listNode));
 
         pushNode-> data = data;
         
-        if (target -> natural_head 
+        struct listNode *pretNode = target -> previous
 
         pushNode -> next = target;
         pushNode -> previous = preNode;
