@@ -6,7 +6,7 @@ void listrpush(struct listNode *target, char data)
 
         pushNode-> data = data;
         
-        struct listNode *pretNode = target -> previous
+        struct listNode *preNode = target -> previous
 
         pushNode -> next = target;
         pushNode -> previous = preNode;
