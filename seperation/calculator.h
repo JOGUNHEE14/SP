@@ -24,11 +24,12 @@ struct list {
         struct listNode *head;
         struct listNode *tail;
 };
-// infoNode 는 소수점을 포함한 숫자를 저장하기 위해 만든 노드. 자연수의 앞, 뒤 부분과 소수부분의 앞, 뒤부분의 위치를 저장함.
-// 큐에 infroNode를 저장해서 사용할 예정. 자연수는 natural_부분에 소수는 decimal_에 저장하고 부호는 data에 저장예정
+// infoNode 는 소수점을 포함한 숫자를 저장하기 위해 만든 노드. 자연수와 소수점아래의 수를 저장할 list를 저
+// 큐에 infroNode를 저장해서 사용할 예정. 자연수는 natural부분에 소수는 decimal에 저장하고 부호는 data에 저장예정
 struct inforNode {
         struct list *natural;
         struct list *decimal;
+        char data;
 };
 
 int priority(struct stackNode *target, char com);
