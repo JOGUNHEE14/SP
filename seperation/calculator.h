@@ -7,19 +7,19 @@ struct stackNode {
         char data;
 };
 
-//숫자 넣을 노드
-struct listNode {
-        struct listNode *previous; // 숫자리스트의 head의 previous 부분에 임시적으로 소수점 시작위치를 저장함
-        struct listNode *next;
-        char data;
-};
-
 //숫자를 저장한 info노드를 저장하는 노드
 struct queueNode {
         struct queueNode *next;
         struct inforNode *data;
 };
 
+//숫자 넣을 노드
+struct listNode {
+        struct listNode *previous; // 숫자리스트의 head의 previous 부분에 임시적으로 소수점 시작위치를 저장함
+        struct listNode *next;
+        char data;
+};
+//숫자의 처음과 끝을 저장하기 위한 list
 struct list {
         struct listNode *head;
         struct listNode *tail;
