@@ -13,15 +13,29 @@ int main(void)
         printf("Input: \n");
 
         while (1) {
-                char x = getchar();
+                char x = getc();
                 if (x == '\n' || x == EOF || x == '\0')
                         break;
                         
                 else if (x == ' '); // 대충 공백처리
 
                 // 대충 숫자면 프린트 -> 숫자를 리스트노드를 이용해서 저장해야함
-                else if ('0' <= x && x <= '9')  
-                        while
+                else if (('0' <= x && x <= '9')) {
+                        struct inforNode *number = init();
+                        
+                        //data에 부호 넣어야 하는데 대충 플러스로 함
+                        while ('0' <= x && x <= '9') {
+                                listrpush(number -> natural, x);
+                                x = getc();
+                        }
+        
+                        if (x == '.') {
+                                while ('0' <= x && x <= '9') {
+                                        listrpush(number -> decimal, x);
+                                        x = getc();
+                                }
+                        }
+                        
                 
                 // 닫는 괄호가 입력으로 들어오면 여는 괄호가 나올 때 까지 연산자 꺼내기
                 if (x == ')') {  
