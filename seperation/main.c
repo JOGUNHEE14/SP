@@ -30,6 +30,7 @@ int main(void)
                         }
         
                         if (x == '.') {
+                                x = getc();
                                 while ('0' <= x && x <= '9') {
                                         listrpush(number -> decimal, x);
                                         x = getc();
