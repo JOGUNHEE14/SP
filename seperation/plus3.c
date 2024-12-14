@@ -14,7 +14,7 @@ void listrpush(struct listNode* head, char data) {
     *head = newNode;
 }
 
-struct listNode* plus(struct inforNode* front, struct inforNode* rear)  {
+struct inforNode* plus(struct inforNode* front, struct inforNode* rear)  {
 	struct inforNode* result = malloc(sizeof(struct inforNode));
 	result->natural_head = NULL;
 	result->natural_tail = NULL;
