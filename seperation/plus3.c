@@ -77,8 +77,8 @@ struct inforNode* plus(struct list *front, struct list *rear)  {
     	struct listNode* naturalRear = rear -> tail;
 
     	while (naturalFront != NULL || naturalRear != NULL) {
-        	char x = (naturalFront != NULL) ? listrpop(natural) : '0';
-        	char y = (naturalRear != NULL) ? listrpop(rear->  : '0';
+        	char x = (naturalFront != NULL) ? listrpop(front -> natural) : '0';
+        	char y = (naturalRear != NULL) ? listrpop(rear-> natural) : '0';
         	char resultt = (x + y + alpha - 144) % 10 + 48;
 
         	listlpush(result -> natural, resultt);
