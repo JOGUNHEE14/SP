@@ -97,4 +97,4 @@ struct inforNode* plus(struct inforNode *front, struct inforNode *rear)  {
         return result;
 }
 
-                                                                                                    1,1         
+                                                                                          
