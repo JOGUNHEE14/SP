@@ -10,18 +10,19 @@ struct inforNode* plus(struct inforNode *front, struct inforNode *rear)  {
 	struct listNode *end; // 끊기는 소수자리의 마지막 수
 
     // 1. 소수점 바로 뒤부터 겹치는 부분위치 찾기
-    	struct listNode* decimalFront = front -> head;
-    	struct listNode* decimalRear = rear -> head;
+    	struct listNode* decimalFront = front -> decimal -> head;
+    	struct listNode* decimalRear = rear -> decimal -> head;
 
     // 겹치는 소수 부분 위치찾기
+	// 소수부분이 없는 수가 있으면 소수부분이 있는 수에 저장된 decimal의 head와 tail의 주소를 저장
 	if (decimalFront == NULL && deciamlRear == NULL);
 	else if (decimalFront == NULL && decimalRear != NULL) {
-		cont = decimalRear;
-		end = rear -> tail;
+		result -> decimal -> head = rear -> decimal -> head;
+		result -> decimal -> tail = rear -> decimal -> tail;
 	}
 	else if (decimalFront != NULL && decimalRear == NULL) {
-		cont = decimalFront;
-		end = front -> tail;
+		result -> decimal -> head = front -> decimal -> head;
+		result -> decimal -> tail = front -> decimal -> tail;
 	}
 	else if (decimalFront != NULL && decimalRear != NULL) {
 	    	while (decimalFront -> next != NULL && decimalRear -> next != NULL) {
@@ -32,13 +33,13 @@ struct inforNode* plus(struct inforNode *front, struct inforNode *rear)  {
 		// 끊기는 자리수랑 마지막 수 저장장
 		if (decimalFront-> next == NULL && dcimaalRear -> next != NULL) {
 			cont = decimalRear -> next;
-			end = rear -> tail;
-			rear -> tail = decimalRear;
+			end = rear -> decimal -> tail;
+			rear -> decimal -> tail = decimalRear;
 		}
 		else if (decimalFront -> next != NULL && decimalRear -> next ==NULL) {
 			cont = decimalFront -> next;
-			end = front -> tail;
-			front -> tail = decimalFront;
+			end = front -> decimal -> tail;
+			front -> decimal -> tail = decimalFront;
 		}
 		else 
 			cont = NULL; // 자리수가 같으면 NULL
@@ -94,7 +95,7 @@ struct inforNode* plus(struct inforNode *front, struct inforNode *rear)  {
         listlpush(result->natural, alpha);
     }
 	
-    free(front);
+    free(front -> );
     free(rear);	
 
     return result;
