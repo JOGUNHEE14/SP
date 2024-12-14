@@ -31,7 +31,7 @@ struct inforNode* plus(struct inforNode *front, struct inforNode *rear)  {
 	    	}
 		
 		// 끊기는 자리수랑 마지막 수 저장장
-		if (decimalFront-> next == NULL && dcimaalRear -> next != NULL) {
+		if (decimalFront-> next == NULL && decimalRear -> next != NULL) {
 			cont = decimalRear -> next;
 			end = rear -> decimal -> tail;
 			rear -> decimal -> tail = decimalRear;
@@ -71,23 +71,16 @@ struct inforNode* plus(struct inforNode *front, struct inforNode *rear)  {
 			result -> decimal -> tail = end;
 		}
 	}
-		
 
-    // 자연수 부분 계산
-    	struct listNode* naturalFront = front -> tail;
-    	struct listNode* naturalRear = rear -> tail;
-
-    	while (naturalFront != NULL || naturalRear != NULL) {
-        	char x = (naturalFront != NULL) ? listrpop(front -> natural) : '0';
-        	char y = (naturalRear != NULL) ? listrpop(rear-> natural) : '0';
+    	while (front -> natural -> tail != NULL || front->natural->tail != NULL) {
+        	char x = (front -> natural -> tail != NULL) ? listrpop(front -> natural) : '0';
+        	char y = (front -> natural -> tail != NULL) ? listrpop(rear-> natural) : '0';
         	char resultt = (x + y + alpha - 144) % 10 + 48;
 
         	listlpush(result -> natural, resultt);
 
         	alpha = (x + y + alpha - 144 >= 10) ? '1' : '0';
 
-        	if (naturalFront != NULL) naturalFront = naturalFront->previous;
-        	if (naturalRear != NULL) naturalRear = naturalRear->previous;
     	}
 
     // 마지막 올림 처리
