@@ -13,7 +13,7 @@ int main(void)
         printf("Input: \n");
 
         while (1) {
-                char x = getc();
+                x = getc(file); // file 포인터를 만들어야함.
                 if (x == '\n' || x == EOF || x == '\0')
                         break;
                         
