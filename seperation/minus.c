@@ -7,7 +7,7 @@ struct listNode* minus(struct inforNode* front, struct inforNode* rear) {
     char resultt;
     char x;
     char y;
-    int com = 0; //front 랑 rear중 뭐가큰지 구분 front일시1 rear일시 2
+    int com = 0; //front 랑 rear중 뭐가큰지 구분 front가 클시1 rear일시 2
     
     //front 와 rear 값 비교
     struct listNode* naturalFront = front->natural->head;
@@ -42,8 +42,8 @@ struct listNode* minus(struct inforNode* front, struct inforNode* rear) {
 			break;
 		}
 
-		x = listlpop(front->natural);
-		y = listlpop(rear->natural);
+		x = naturalFront -> data;
+		y = naturalRear -> data;
 
 		if (x > y) {
 			com = 1;
@@ -80,8 +80,8 @@ struct listNode* minus(struct inforNode* front, struct inforNode* rear) {
 
     if (com == 4) {
 	while (decimalFront != NULL && decimalRear != NULL) {
-		x = listlpop(front->decimal);
-		y = listlop(rear->decimal);
+		x = decimalFront -> data;
+		y = decimalRear -> data;
 
 		if (x > y) {
 			com = 1;
@@ -108,7 +108,7 @@ struct listNode* minus(struct inforNode* front, struct inforNode* rear) {
 	
 			
 			resultt = (x - beta%48 < y) ? (x - beta%48 + 10 - y) + 48 : (x - beta%48 - y);
-			listrpush(result ->decimal, resultt);
+			listlpush(result ->decimal, resultt);
 		else
 			break;
 		}
@@ -124,7 +124,7 @@ struct listNode* minus(struct inforNode* front, struct inforNode* rear) {
 			 (x - beta%48 < y) ? beta = '1' : '0';
 			
 		 	 resultt = (x - beta%48 < y) ? (x - beta%48 + 10 - y) + 48 : (x - beta%48 - y);
-			 listrpush(result ->natural, resultt);
+			 listlpush(result ->natural, resultt);
 			
 		else
 			break;
@@ -140,7 +140,7 @@ struct listNode* minus(struct inforNode* front, struct inforNode* rear) {
 	
 			
 			resultt = (y - beta%48 < x) ? (y - beta%48 + 10 - x) + 48 : (y - beta%48 - x);
-			listrpush(result ->decimal, resultt);
+			listlpush(result ->decimal, resultt);
 		else
 			break;
 		}
@@ -156,11 +156,11 @@ struct listNode* minus(struct inforNode* front, struct inforNode* rear) {
 			(y - beta%48 < x) ? beta = '1' : '0';
 			
 			resultt = (y - beta%48 < x) ? (y - beta%48 + 10 - x) + 48 : (y - beta%48 - x);
-			listrpush(result ->natural, resultt);
+			listlpush(result ->natural, resultt);
 			
 		else
 			break;
-		
+		listlpush(result -> data, '-');
          }
 
 		
