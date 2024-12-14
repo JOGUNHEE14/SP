@@ -35,4 +35,4 @@ char listrpop(struct list *target)
 }
 
 
-//
+// 알아서 push랑 pop좀
