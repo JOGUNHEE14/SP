@@ -49,4 +49,4 @@ char listrpop(struct list *target);
 char listlpop(struct list *target);
 
 struct inforNode *init();
-struct inforNode *plus(struct inforNode *front, struct inforNode *rear);
+struct inforNode *plus(struct list *front, struct list *rear);
