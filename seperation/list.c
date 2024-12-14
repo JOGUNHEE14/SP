@@ -36,12 +36,15 @@ char listrpop(struct list *target)
         struct listNode *popNode = target -> tail;
 
         char popData = popNode-> data;
-        popNode -> next = NULL;
-        target -> tail = popNode -> previous;
 
-        if (popNode -> previous == NULL)
+        if (popNode -> previous == NULL) {
                 target -> head = NULL;
-        
+                target -> tail = NULL;
+        }
+        else {
+                popNode -> previous -> next = NULL;
+                target -> tail = popNode -> previous;
+        }
         free(popNode);            
 
         return popData;
