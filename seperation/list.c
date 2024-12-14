@@ -31,7 +31,6 @@ void listlpush(struct listNode *target, char data)
         target->next = pushNode;
 }
 
-
 char listrpop(struct list *target)
 {
         struct listNode *popNode = target -> tail;
