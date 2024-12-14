@@ -1,5 +1,5 @@
 #include "calculator.h"
-//수정중임
+
 
 struct inforNode* plus(struct inforNode *front, struct inforNode *rear)  {
         struct inforNode *result = init();
