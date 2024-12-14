@@ -91,12 +91,16 @@ struct inforNode* plus(struct inforNode *front, struct inforNode *rear)  {
     	}
 
     // 마지막 올림 처리
-    if (alpha == '1') {
-        listlpush(result->natural, alpha);
-    }
+    	if (alpha == '1') {
+        	listlpush(result->natural, alpha);
+    	}
 	
-    free(front -> );
-    free(rear);	
+    	free(front -> natural);
+	free(front -> decimal);
+	free(rear -> natural);
+	free(rear -> decimal);
+	free(front);
+	free(rear);
 
-    return result;
+    	return result;
 }
