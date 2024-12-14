@@ -1,4 +1,4 @@
-#include "calculator.c"
+#include "calculator.h"
 
 struct inforNode *init() 
 {
