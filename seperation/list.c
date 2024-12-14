@@ -40,7 +40,7 @@ char listrpop(struct list *target)
         popNode -> next = NULL;
         target -> tail = popNode -> previous;
 
-        if (popNode -> previous = NULL)
+        if (popNode -> previous == NULL)
                 target -> head = NULL;
         
         free(popNode);            
