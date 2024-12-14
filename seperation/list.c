@@ -1,34 +1,18 @@
-#include "calculator.c"
+#include "calculator.h"
 
 void listrpush(struct list *target, char data)
 {
         struct listNode *pushNode = malloc(sizeof(struct listNode));
-        
+
         pushNode -> next = NULL;
         pushNode -> previous = target -> tail;
         pushNode-> data = data;
-        
-        if (target -> tail != NULL) 
+
+        if (target -> tail != NULL)
                 target -> tail -> next = pushNode;
         else
                 target -> head = pushNode;
         target -> tail = pushNode;
-}
-
-//수정 해야함
-void listlpush(struct listNode *target, char data)
-{
-        struct listNode *pushNode = malloc(sizeof(struct listNode));
-
-        pushNode -> data = data;
-        
-        struct listNode *nextNode = target -> next;
-
-        pushNode ->previous = target;
-        pushNode ->next = nextNode;
-
-        preNode->previous = pushNode;
-        target->next = pushNode;
 }
 
 char listrpop(struct list *target)
@@ -40,28 +24,15 @@ char listrpop(struct list *target)
         if (popNode -> previous == NULL) {
                 target -> head = NULL;
                 target -> tail = NULL;
-        }
-        else {
+        } else {
                 popNode -> previous -> next = NULL;
                 target -> tail = popNode -> previous;
         }
-        free(popNode);            
-
-        return popData;
-}
-
-// 수정해야함
-char listlpop(struct listNode *target)
-{
-        struct listNode *popNode = target -> next;
-        struct listNode *nextNode = popNode -> next;
-
-        char popData = popNode-> data;
-        
-        nextNode->previous = target;
-        target -> next = nextNode;
 
         free(popNode);
 
         return popData;
 }
+
+
+//
