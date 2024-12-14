@@ -15,7 +15,7 @@ struct inforNode* plus(struct inforNode *front, struct inforNode *rear)  {
 
     // 겹치는 소수 부분 위치찾기
 	// 소수부분이 없는 수가 있으면 소수부분이 있는 수에 저장된 decimal의 head와 tail의 주소를 저장
-	if (decimalFront == NULL && deciamlRear == NULL);
+	if (decimalFront == NULL && decimalRear == NULL);
 	else if (decimalFront == NULL && decimalRear != NULL) {
 		result -> decimal -> head = rear -> decimal -> head;
 		result -> decimal -> tail = rear -> decimal -> tail;
