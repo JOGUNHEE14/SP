@@ -15,6 +15,25 @@ void listrpush(struct list *target, char data)
         target -> tail = pushNode;
 }
 
+//수정 해야함
+void listlpush(struct list *target, char data)
+{
+        struct listNode *pushNode = malloc(sizeof(struct listNode));
+
+        pushNode -> previous = NULL;
+        pushNode ->next  = target->head;
+
+
+        pushNode ->data = data;
+
+        if (target -> head != NULL)
+                target -> head -> previous = pushNode;
+        else
+                target -> tail = pushNode;
+
+        target->head = pushNode;
+}
+
 char listrpop(struct list *target)
 {
         struct listNode *popNode = target -> tail;
