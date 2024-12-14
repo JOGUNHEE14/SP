@@ -1,28 +1,9 @@
 #include "calculator.h"
 //수정중임
 
-// listrpush: 리스트 앞에 값을 푸시하는 함수
-void listrpush(struct listNode* head, char data) {
-    struct listNode* newNode = malloc(sizeof(struct listNode));
-    newNode->data = data;
-    newNode->next = *head;
-    newNode->previous = NULL;
-
-    if (*head != NULL) {
-        (*head)->previous = newNode;
-    }
-    *head = newNode;
-}
-
 struct inforNode* plus(struct inforNode* front, struct inforNode* rear)  {
-	struct inforNode* result = malloc(sizeof(struct inforNode));
-	result->natural_head = NULL;
-	result->natural_tail = NULL;
-	result->decimal_head = NULL;
-	result->decimal_tail = NULL;
+	struct inforNode* result = init();
 
-	
-	
 	char alpha = '0';  // 자릿수더하기
 	char resultt;
 	struct listNode *con; //끊기는 소수 자리 수 저장용
