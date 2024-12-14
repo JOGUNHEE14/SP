@@ -7,10 +7,10 @@ struct inforNode *init()
         number -> decimal = malloc(sizeof(struct list));
         number -> data = '+'; 
 
-        natural_number -> head = NULL;
-        natural_number -> tail = NULL;
-        decimal_number -> head = NULL;
-        decimal_number -> tail = NULL;
+        number -> natural -> head = NULL;
+        number -> natural -> tail = NULL;
+        number -> decimal -> head = NULL;
+        number -> decimal -> tail = NULL;
 
         return number;
 }
