@@ -1,7 +1,7 @@
 #include "calculator.h"
 //수정중임
 
-struct inforNode* plus(struct list *front, struct list *rear)  {
+struct inforNode* plus(struct inforNode *front, struct inforNode *rear)  {
 	struct inforNode *result = init();
 
 	char alpha = '0';  // 자릿수더하기
