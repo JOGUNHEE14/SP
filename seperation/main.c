@@ -36,7 +36,7 @@ int main(void)
                                         x = getc();
                                 }
                         }
-                        
+                }
                 
                 // 닫는 괄호가 입력으로 들어오면 여는 괄호가 나올 때 까지 연산자 꺼내기
                 if (x == ')') {  
@@ -65,7 +65,7 @@ int main(void)
                         while (operator -> next != NULL) {
                                 if (priority(operator, x) == 2)
                                         break;
-                                printf("%c ", pop(operator));
+                                printf("%c ", stackpop(operator));
                         }
                         stackpush(operator, x);
                 }
