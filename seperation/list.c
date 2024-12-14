@@ -15,24 +15,22 @@ void listrpush(struct list *target, char data)
         target -> tail = pushNode;
 }
 
-//수정 해야함
 void listlpush(struct list *target, char data)
 {
         struct listNode *pushNode = malloc(sizeof(struct listNode));
 
-        pushNode -> previous = NULL;
-        pushNode ->next  = target->head;
+        pushNode->next = target->head;
+        pushNode->previous = NULL;
+        pushNode->data = data;
 
-
-        pushNode ->data = data;
-
-        if (target -> head != NULL)
-                target -> head -> previous = pushNode;
+        if (target->head != NULL)
+                target->head->previous = pushNode;
         else
-                target -> tail = pushNode;
+                target->tail = pushNode;
 
         target->head = pushNode;
 }
+
 
 char listrpop(struct list *target)
 {
@@ -53,5 +51,23 @@ char listrpop(struct list *target)
         return popData;
 }
 
+char listlpop(struct list *target)
+{
+        struct listNode *popNode = target->head;
+
+        char popData = popNode->data;
+
+        if (popNode->next == NULL) {
+                target->head = NULL;
+                target->tail = NULL;
+        } else {
+                popNode->next->previous = NULL;
+                target->head = popNode->next;
+        }
+
+        free(popNode);
+
+        return popData;
+}
 
 // 알아서 push랑 pop좀
