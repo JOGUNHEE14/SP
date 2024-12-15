@@ -1,6 +1,6 @@
 #include "calculator.h"
 
-struct listNode* minus(struct inforNode* front, struct inforNode* rear) {
+struct inforNode* minus(struct inforNode* front, struct inforNode* rear) {
     struct inforNode *result = init();
 
     char beta= '0';  // 자릿수빼기
@@ -60,10 +60,10 @@ struct listNode* minus(struct inforNode* front, struct inforNode* rear) {
 		//소수점 자릿수 맞추기위해 0채우기
     while (decimalFront != NULL || decimalRear != NULL) {
 	if (decimalFront == NULL) {
-     		listlpush(front->decimal->head, '0'); // 상위 리스트의 head를 수정
+     		listlpush(front->decimal, '0'); // 상위 리스트의 head를 수정
         }
 	if (decimalRear == NULL) {
-    		listlpush(rear->decimal->head, '0'); // 상위 리스트의 head를 수정
+    		listlpush(rear->decimal, '0'); // 상위 리스트의 head를 수정
 	}
 
 	if (decimalFront != NULL) {
@@ -109,6 +109,7 @@ struct listNode* minus(struct inforNode* front, struct inforNode* rear) {
 			
 			resultt = (x - beta%48 < y) ? (x - beta%48 + 10 - y) + 48 : (x - beta%48 - y);
 			listlpush(result ->decimal, resultt);
+		}	
 		else
 			break;
 		}
@@ -125,7 +126,7 @@ struct listNode* minus(struct inforNode* front, struct inforNode* rear) {
 			
 		 	 resultt = (x - beta%48 < y) ? (x - beta%48 + 10 - y) + 48 : (x - beta%48 - y);
 			 listlpush(result ->natural, resultt);
-			
+		}
 		else
 			break;
 		
@@ -138,9 +139,10 @@ struct listNode* minus(struct inforNode* front, struct inforNode* rear) {
 			y = listrpop(rear->decimal); 
 			(y - beta%48 < x) ? beta = '1' : '0';
 	
-			
+		
 			resultt = (y - beta%48 < x) ? (y - beta%48 + 10 - x) + 48 : (y - beta%48 - x);
 			listlpush(result ->decimal, resultt);
+		}
 		else
 			break;
 		}
@@ -157,13 +159,13 @@ struct listNode* minus(struct inforNode* front, struct inforNode* rear) {
 			
 			resultt = (y - beta%48 < x) ? (y - beta%48 + 10 - x) + 48 : (y - beta%48 - x);
 			listlpush(result ->natural, resultt);
-			
+		}
 		else
 			break;
-		listlpush(result -> data, '-');
+		result -> data= '-';
          }
 
-		
+    }
         	
     free(front -> natural);
     free(front -> decimal); 
