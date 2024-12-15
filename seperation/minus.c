@@ -141,9 +141,9 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
             x = listrpop(front->decimal);
             y = listrpop(rear->decimal);
 
-            resultt = (x < y) ? (x + 10 - y) + 48 : (x - y) + 48;
+            resultt = (y < x) ? (y + 10 - x) + 48 : (y - x) + 48;
             listlpush(result->decimal, resultt);
-            (x < y) ? beta = '1' : '0';
+            (y < x) ? beta = '1' : '0';
         }
 
         while (1) {
