@@ -14,6 +14,8 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
         int total = 0;
         int y = 0;
         int x = 0;
+
+        char zero;
         // 0일 때 빨리 리턴
         if (front -> natural -> head != NULL && front -> natural -> head -> data == '0' && front -> decimal -> head == NULL) {
                 listrpush(result -> natural ,'0');
@@ -118,10 +120,25 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
         }
         while (front -> natural -> head != NULL)
                 listrpop(front -> natural);
+        
         if (result -> natural -> head == NULL)
                 listlpush(result -> natural,'0');
-        else if (result -> natural -> head -> data == '0' && result -> natural -> head -> next != NULL)
-                listlpop(result -> natural);
+
+        while (result -> natural -> head != NULL) {
+                zero = result -> natural -> head -> data;
+                if (zero == '0' && result -> natural -> head -> previous != NULL)
+                        listlpop(result -> natural);
+                else
+                        break;
+        }
+
+        while (result -> natural -> head != NULL) {
+                zero = result -> natural -> head -> data;
+                if (zero == '0' && result -> natural -> head -> next != NULL)
+                        listlpop(result -> natural);
+                else
+                        break;
+        }
 
         while (result -> decimal -> tail !=NULL) {
                 if (result -> decimal -> tail -> data == '0')
