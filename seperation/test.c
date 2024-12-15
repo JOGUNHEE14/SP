@@ -15,7 +15,6 @@ int main(void)
                 x = getc(fp);
         }
         x = getc(fp);
-        x=getc(fp);
         struct inforNode *number1 = init();
 
         while ('0' <= x && x <= '9') {
