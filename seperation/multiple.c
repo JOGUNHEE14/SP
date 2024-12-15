@@ -32,41 +32,63 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
 
         while (tmpFront != NULL)
         {
+                alpha = '0';
                 moveResult = tmpResult;
                 if (rear -> decimal -> tail != NULL)
                         moveRear = rear -> decimal -> tail;
                 else
                         moveRear = rear -> natural -> tail;
-
+                printf("-----------\n");
                 while (1) {
-                        total = (alpha + moveResult -> data + (moveRear -> data * tmpFront -> data)) % 48;
+                        total = alpha + moveResult -> data + (moveRear -> data * tmpFront -> data)%48-96;
                         alpha = total/10 + 48;
                         if (moveResult -> previous == NULL)
-                                listlpush(result -> natural, (total%48)%10+48);
-                        else
-                                moveResult -> data = (total%48)%10 + 48;
+                                listlpush(result -> natural, '0');
+                        moveResult -> data = total%10 + 48;
+                        printf("%c",moveResult->data);
                         if (moveRear -> previous == NULL)
                                 break;
                         moveResult = moveResult -> previous;
                         moveRear = moveRear -> previous;
                 }
+                if(moveResult -> previous == NULL)
+                        listlpush(result -> natural, '0');
+                moveResult = moveResult -> previous;
                 if (moveRear == rear -> decimal -> head) {
                         moveRear = rear -> natural -> tail;
                         while (1) {
-                                total = (alpha + moveResult -> data + (moveRear -> data * tmpFront -> data)) % 48;
-                                alpha = total/10 + 48;
-                                if (moveResult -> previous == NULL)
-                                        listlpush(result -> natural, (total%48)%10 + 48);
-                                else
-                                        moveResult -> data = (total%48)%10 + 48;
+                        total = alpha + moveResult -> data + (moveRear -> data * tmpFront -> data)%48-96;
+                        alpha = total/10 + 48;
+                        if (moveResult -> previous == NULL)
+                                listlpush(result -> natural, '0');
+                        moveResult -> data = total%10 + 48;
+                        printf("%c",moveResult->data);
+                        if (moveRear -> previous == NULL)
+                                break;
+                        moveResult = moveResult -> previous;
+                        moveRear = moveRear -> previous;
+                }
+                if(moveResult -> previous == NULL)
+                        listlpush(result -> natural, '0');
+                moveResult = moveResult -> previous;
+                if (moveRear == rear -> decimal -> head) {
+                        moveRear = rear -> natural -> tail;
+                        while (1) {
+                                total = alpha + moveResult -> data + (moveRear -> data * tmpFront -> data) %48-96;
+                                alpha = total%10 + 48;
+                                if (moveResult -> previous == NULL);
+                                        listlpush(result -> natural, '0');
+                                moveResult -> data = total%10+48;
+                                printf("%c",moveResult -> data);
                                 if (moveRear -> previous == NULL)
                                         break;
                                 moveResult = moveResult -> previous;
                                 moveRear = moveRear -> previous;
                         }
                 }
-		if (alpha > '0')
-			listlpush(result -> natural, alpha);
+                if (alpha > '0')
+                        listlpush(result -> natural, alpha);
+                printf("%c\n",moveResult->data);
                 if (tmpFront -> previous != NULL)
                         tmpFront = tmpFront -> previous;
                 else if (tmpFront == front -> decimal -> head)
@@ -102,6 +124,8 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
         free(rear -> decimal);
         free(front);
 
-	return result;
+        return result;
 }
-                                                                                                                                             
+                                                                                                      
+
+
