@@ -173,9 +173,7 @@ struct inforNode* minus(struct inforNode* front, struct inforNode* rear) {
     free(rear -> decimal);
     free(front);
     free(rear);
-	
-    free(front);
-    free(rear);	
+
 
     return result;
 }
