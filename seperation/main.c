@@ -10,6 +10,12 @@ int main(void)
 
         operator -> next = NULL; // operator가 가라키는 포인터 초기화
 
+        FILE *file = fopen("tmp.txt", "r");
+        if (file == NULL) {
+                perror("error");
+                return -1;
+        }
+        
         printf("Input: \n");
 
         while (1) {
