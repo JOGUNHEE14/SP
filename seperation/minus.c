@@ -96,7 +96,8 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
     decimalRear = rear->decimal->tail;
 
     // 뺄셈 시작
-    if (com == 1) {
+    if (com == 1) 
+        //소수 맨 처음 계산은 beta가 0이어야하므로 첫자리만 먼저계산
         if (front->decimal->tail != NULL && rear->decimal->tail != NULL) {
             x = listrpop(front->decimal);
             y = listrpop(rear->decimal);
