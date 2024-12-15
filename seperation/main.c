@@ -77,7 +77,17 @@ int main(void)
                 }
         }
         while (operator -> next != NULL)
-                printf("%c ",stackpop(operator));
+                char oper = stackpop(operator);
+                if (oper == '+') {
+                        plus();
+                }
+                else if (oper == '-') {
+                        minus();
+                }
+                else if (oper == '*') {
+                        multiple();
+                }
+                
         printf("\n");
         return 0;
 }
