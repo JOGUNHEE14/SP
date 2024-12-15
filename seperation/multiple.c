@@ -28,10 +28,10 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
                 tmpFront = front -> decimal -> tail;
         else
                 tmpFront = front -> natural -> tail;
-        
+
         listlpush(result -> natural, '0');
         tmpResult = result -> natural -> tail;
-        struct listNode *b;
+
         while (tmpFront != NULL)
         {
                 alpha = 0;
@@ -59,11 +59,10 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
                         moveRear = moveRear -> previous;
 
                 }
+                if (moveResult -> previous == NULL)
+                        listlpush(result -> natural,'0');
+                moveResult = moveResult -> previous;
                 if (moveRear == rear -> decimal -> head) {
-                        if(moveResult -> previous == NULL)
-                                listlpush(result -> natural, '0');
-
-                        moveResult = moveResult -> previous;
                         moveRear = rear -> natural -> tail;
 
                         while (1) {
@@ -83,15 +82,12 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
                                 moveResult = moveResult -> previous;
                                 moveRear = moveRear -> previous;
                         }
-                        b = result ->  natural -> head;
                 }
-                if (alpha > 0){
-                        if (moveResult -> previous == NULL)
-                                listlpush(result -> natural, alpha+48);
-                        else
-                                moveResult -> previous -> data = alpha+48;
+                if (moveResult -> previous == NULL)
+                        listlpush(result -> natural, alpha+48);
+                else
+                        moveResult -> previous -> data = alpha+48;
 
-                }
                 if (tmpFront -> previous != NULL)
                         tmpFront = tmpFront -> previous;
                 else if (tmpFront == front -> decimal -> head)
@@ -101,11 +97,6 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
 
                 tmpResult = tmpResult -> previous;
 
-        }
-        b = result -> natural ->head;
-        while (b!=NULL) {
-                printf("%c",b->data);
-                b = b->next;
         }
         while(rear -> decimal -> head != NULL) {
                 if (result -> natural -> tail == NULL)
@@ -137,3 +128,6 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
 
         return result;
 }
+
+
+
