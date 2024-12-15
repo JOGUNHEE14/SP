@@ -131,7 +131,7 @@ struct inforNode* minus(struct inforNode* front, struct inforNode* rear) {
 			break;
 		
          }
-
+    }
     if (com ==2) {
 	    while (1) {
 		if (decimalFront != NULL && decimalRear != NULL) {
