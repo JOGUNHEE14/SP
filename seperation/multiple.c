@@ -59,7 +59,7 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
                         moveRear = moveRear -> previous;
 
                 }
-                b = result -> natual -> head;
+                b = result -> natural -> head;
                 while (b!=NULL) {
                         printf("%c",b->data);
                         b = b -> next;
