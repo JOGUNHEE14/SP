@@ -36,7 +36,7 @@ int main(void)
         }
         printf(".");
         while (result -> decimal -> head!=NULL) {
-                x = listrpop(result -> decimal);
+                x = listlpop(result -> decimal);
                 printf("%c",x);
         }
         return 0;
