@@ -30,13 +30,13 @@ int main(void)
         struct inforNode *result = minus(number,number1);
 
 
-        while (result->decimal->head!=NULL) {
-                x = listrpop(result->decimal);
+        while (result->natural->head!=NULL) {
+                x = listlpop(result->natural);
                 printf("%c",x);
         }
         printf(".");
-        while (result -> natural -> head!=NULL) {
-                x = listrpop(result -> natural);
+        while (result -> decimal -> head!=NULL) {
+                x = listrpop(result -> decimal);
                 printf("%c",x);
         }
         return 0;
