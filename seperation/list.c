@@ -1,73 +1,129 @@
 #include "calculator.h"
 
-void listrpush(struct list *target, char data)
+struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
 {
-        struct listNode *pushNode = malloc(sizeof(struct listNode));
+        struct inforNode *result = init();
 
-        pushNode -> next = NULL;
-        pushNode -> previous = target -> tail;
-        pushNode-> data = data;
+        struct listNode *tmpResult;
+        struct listNode *tmpFront;
+        struct listNode *moveRear;
+        struct listNode *moveResult;
 
-        if (target -> tail != NULL)
-                target -> tail -> next = pushNode;
-        else
-                target -> head = pushNode;
-        target -> tail = pushNode;
-}
-
-void listlpush(struct list *target, char data)
-{
-        struct listNode *pushNode = malloc(sizeof(struct listNode));
-
-        pushNode->next = target->head;
-        pushNode->previous = NULL;
-        pushNode->data = data;
-
-        if (target->head != NULL)
-                target->head->previous = pushNode;
-        else
-                target->tail = pushNode;
-
-        target->head = pushNode;
-}
-
-
-char listrpop(struct list *target)
-{
-        struct listNode *popNode = target -> tail;
-
-        char popData = popNode-> data;
-
-        if (popNode -> previous == NULL) {
-                target -> head = NULL;
-                target -> tail = NULL;
-        } else {
-                popNode -> previous -> next = NULL;
-                target -> tail = popNode -> previous;
+        int num = 0;
+        int alpha = 0;
+        int total = 0;
+        // 0일 때 빨리 리턴
+        if (front -> natural -> head != NULL && front -> natural -> head -> data == '0' && front -> decimal -> head == NULL) {
+                listrpush(result -> natural ,'0');
+                return result;
+        }
+        if (rear -> natural -> head != NULL && front -> natural -> head -> data == '0' && front -> decimal -> head ==NULL) {
+                listrpush(result->natural,'0');
+                return result;
         }
 
-        free(popNode);
+        if (front -> decimal -> tail != NULL)
+                tmpFront = front -> decimal -> tail;
+        else
+                tmpFront = front -> natural -> tail;
 
-        return popData;
-}
+        listlpush(result -> natural, '0');
+        tmpResult = result -> natural -> tail;
 
-char listlpop(struct list *target)
-{
-        struct listNode *popNode = target->head;
+        while (tmpFront != NULL)
+        {
+                alpha = 0;
+                moveResult = tmpResult;
+                if (rear -> decimal -> tail != NULL)
+                        moveRear = rear -> decimal -> tail;
+                else
+                        moveRear = rear -> natural -> tail;
+                printf("-----------\n");
+                while (1) {
+                        printf("%c\n",alpha);
+                        num = moveResult -> data - '0';
+                        total = alpha + num + (moveRear -> data * tmpFront -> data)%48;
+                        alpha = total/10;
+                        if (moveResult -> previous == NULL)
+                                listlpush(result -> natural, '0');
+                        moveResult -> data = total%10 + 48;
+                        printf("alpah : %d, d : %c\n",alpha, moveResult -> data);
+                        if (moveRear -> previous == NULL)
+                                break;
+                        moveResult = moveResult -> previous;
+                        moveRear = moveRear -> previous;
 
-        char popData = popNode->data;
+                }
+                printf("----------\n");
+                if(moveResult -> previous == NULL)
+                        listlpush(result -> natural, '0');
+                moveResult = moveResult -> previous;
+                if (moveRear == rear -> decimal -> head) {
+                        moveRear = rear -> natural -> tail;
+                        while (1) {
+                                printf("%c\n",alpha);
+                                num = moveResult -> data - '0';
+                                total = alpha + num + (moveRear -> data * tmpFront -> data)%48;
+                                alpha = total/10;
+                                if (moveResult -> previous == NULL)
+                                        listlpush(result -> natural, '0');
+                                moveResult -> data = total%10 + 48;
+                                printf("alpha : %d, d : %c\n",alpha,moveResult -> data);
+                                if (moveRear -> previous == NULL)
+                                        break;
+                                moveResult = moveResult -> previous;
+                                moveRear = moveRear -> previous;
+                        }
+                }
+                if (alpha > 0){
+                        if (moveResult -> previous == NULL)
+                                listlpush(result -> natural, alpha+48);
+                        else
+                                moveResult -> previous -> data = alpha+48;
+                        printf("d : %c\n",moveResult->previous->data);
+                }
+                if (tmpFront -> previous != NULL)
+                        tmpFront = tmpFront -> previous;
+                else if (tmpFront == front -> decimal -> head)
+                        tmpFront = front -> natural -> tail;
+                else
+                        break;
 
-        if (popNode->next == NULL) {
-                target->head = NULL;
-                target->tail = NULL;
-        } else {
-                popNode->next->previous = NULL;
-                target->head = popNode->next;
+                tmpResult = tmpResult -> previous;
+
         }
+        char x;
 
-        free(popNode);
+        while(rear -> decimal -> head != NULL) {
+                if (result -> natural -> tail == NULL)
+                        listrpush(result -> natural,'0');
+                x = listrpop(result -> natural);
+                printf("%c",x);
+                listlpush(result -> decimal,x);
+                listrpop(rear -> decimal);
+                result->natural -> tail = result -> decimal -> head -> previous;
+        }
+        while (rear -> natural -> head != NULL)
+                listrpop(rear -> natural);
 
-        return popData;
+        while(front -> decimal -> head != NULL) {
+                if (result -> natural -> tail == NULL)
+                        listrpush(result -> natural,'0');
+                x = listrpop(result -> natural);
+                printf("%c",x);
+                listlpush(result -> decimal,x);
+                listrpop(front -> decimal);
+                result -> natural -> tail = result -> decimal -> head -> previous;
+        }
+        while (front -> natural -> head != NULL)
+                listrpop(front -> natural);
+
+        free(front -> natural);
+        free(front -> decimal);
+        free(rear -> natural);
+        free(rear -> decimal);
+        free(front);
+
+        return result;
 }
 
-// 알아서 push랑 pop좀
