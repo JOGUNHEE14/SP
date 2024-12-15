@@ -38,6 +38,7 @@ int main(void)
                 x = listlpop(result -> decimal);
                 printf("%c",x);
         }
+        printf("\n");
         return 0;
 
 
