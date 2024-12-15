@@ -110,4 +110,4 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
 	free(rear);
 	return result;
 }
-                                                                                                                                                                104,0-1       85%                                                            1,23          Top
+                                                                                                                                             
