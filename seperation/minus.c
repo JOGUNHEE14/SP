@@ -1,6 +1,6 @@
 #include "calculator.h"
 
-struct inforNode* minus(struct inforNode* front, struct inforNode* rear) {
+struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
     struct inforNode *result = init();
 
     char beta= '0';  // 자릿수빼기
