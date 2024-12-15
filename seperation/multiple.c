@@ -120,6 +120,13 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
         else if (result -> natural -> head -> data == '0' && result -> natural -> head -> next != NULL)
                 listlpop(result -> natural);
 
+        while(result -> decimal -> tail != NULL) {
+                if (result -> decimal -> tail -> data == '0')
+                        listrpop(result -> decimal);
+                else
+                        break;
+        }
+
         free(front -> natural);
         free(front -> decimal);
         free(rear -> natural);
