@@ -1,108 +1,113 @@
 #include "calculator.h"
 
-struct inforNode *multiple(struct *inforNode front, struct *inforNode rear)
+struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
 {
         struct inforNode *result = init();
 
-	struct listNode *tmpResult;
-	struct listNode *tmpFront;
-	struct listNode *moveRear;
-	struct listNode *moveResult;
+        struct listNode *tmpResult;
+        struct listNode *tmpFront;
+        struct listNode *moveRear;
+        struct listNode *moveResult;
 
-	char alpha = '0';
-	char total = '0';
-	// 0일 때 빨리 리턴
-	if ((front -> natural -> head == '0' && front -> decimal -> tail == NULL) || 
-		(rear -> natural -> head == '0' && rear -> decimal -> tail == NULL) {
-		listrpush(result -> natural ,'0');
-		return result;
-	}
+        char alpha = '0';
+        char total = '0';
+        // 0일 때 빨리 리턴
+        if (front -> natural -> head != NULL && front -> natural -> head -> data == '0' && front -> decimal -> head == NULL) {
+                listrpush(result -> natural ,'0');
+                return result;
+        }
+        if (rear -> natural -> head != NULL && front -> natural -> head -> data == '0' && front -> decimal -> head ==NULL) {
+                listrpush(result->natural,'0');
+                return result;
+        }
 
-	if (front -> decimal -> tail != NULL) 
-		tmpFront = front -> decimal -> tail;
-	else
-		tmpFront = front -> natural -> tail;
+        if (front -> decimal -> tail != NULL)
+                tmpFront = front -> decimal -> tail;
+        else
+                tmpFront = front -> natural -> tail;
 
-	moveFront = tmpFront;
 
-	listlpush(result -> natural, '0');
-	tmpResult = result -> natural -> tail;
-	
-	while (tmpFront != NULL) 
-	{	
-		moveResult = tmpResult;
-		if (rear -> decimal -> tail != NULL)
-			moveRear = rear -> decimal -> tail;
-		else
-			moveRear = rear -> natural -> tail;
+        listlpush(result -> natural, '0');
+        tmpResult = result -> natural -> tail;
 
-		while (1) {
-			total = (alpha + (moveRear -> data * tmpFront -> data)) % 48;
-			alpha = total/10 + (total%10 + moveResult -> data)/10;
-			if (moveResult -> previous == NULL)
-				listlpush(result -> natural, total%10);
-			else
-				moveResult -> data = (moveResult -> data + total) % 10 ;
-			if (moveRear -> previous == NULL)
-				break;
-			moveResult = moveResult -> previous;
-			moveRear = moveRear -> previous;
-		}
+        while (tmpFront != NULL)
+        {
+                moveResult = tmpResult;
+                if (rear -> decimal -> tail != NULL)
+                        moveRear = rear -> decimal -> tail;
+                else
+                        moveRear = rear -> natural -> tail;
 
-		if (moveRear == rear -> decimal -> head) {
-			moveRear = rear -> natural -> tail;
-			while (1) {
-				total = (alpha + (moveRear -> data * tmpFront -> data)) % 48;
-				alpha = total/10 + (total%10 + moveResult -> data)/10;
-				if (moveResult -> previous == NULL)
-					listlpush(result -> natural, total%10);
-				else
-					moveResult -> data = (moveResult -> data + total) % 10 ;
-				if (moveRear -> previous == NULL)
-					break;
-				moveResult = moveResult -> previous;
-				moveRear = moveRear -> previous;
-			}
-		}
-		if (tmpFront -> previous != NULL)
-			tmpFront = tmpFront -> previous;
-		else if (tmpFront == front -> decimal -> head)
-			tmpFront = front -> natural -> tail;
-		else
-			break;
-		if (tmpResult -> previous != NULL)
-			tmpResult = tmpResult -> previous;
-	}
+                while (1) {
+                        total = (alpha + (moveRear -> data * tmpFront -> data)) % 48;
+                        alpha = total/10 + (total%10 + moveResult -> data)/10 + 48;
+                        printf("target : %c, move: %c\n",tmpFront -> data, moveRear -> data);
+                        fflush(stdout);
+                        printf("total : %c, alpha : %c\n",total/10+48, alpha);
+                        fflush(stdout);
+                        if (moveResult -> previous == NULL)
+                                listlpush(result -> natural, total%10+48);
+                        else
+                                moveResult -> data = (moveResult -> data + total) % 10 + 48;
+                        if (moveRear -> previous == NULL)
+                                break;
+                        printf("data : %c\n",moveResult -> data);
+                        fflush(stdout);
+                                                                                                                            moveResult = moveResult -> previous;
+                        moveRear = moveRear -> previous;
+                }
+                printf("--------\n");
 
-	while(rear -> decimal -> head != NULL) {
-		result -> decimal -> head = result -> natural -> tail;
-		result -> natural -> tail = result -> decimal -> previous;
-		if (result -> natural -> tail == NULL)
-			listrpush(result -> natural,'0');
-		listrpop(rear -> decimal);
-	}
-	while (rear -> natural -> head != NULL)
-		listrpop(rear -> natural);
-	while(front -> decimal -> head != NULL) {
-		result -> decimal -> head = result -> natural -> tail;
-		result -> natural -> tail = result -> decimal -> previous;
-		if (result -> natural -> tail == NULL)
-			listrpush(result -> natural,'0');
-		listrpop(front -> decimal);
-	}	
-	while (front -> natural -> head != NULL)
-		listrpop(front -> natural);		
+                if (moveRear == rear -> decimal -> head) {
+                        moveRear = rear -> natural -> tail;
+                        while (1) {
+                                total = (alpha + (moveRear -> data * tmpFront -> data)) % 48;
+                                alpha = total/10 + (total%10 + moveResult -> data)/10 + 48;
+                                if (moveResult -> previous == NULL)
+                                        listlpush(result -> natural, total%10);
+                                else
+                                        moveResult -> data = (moveResult -> data + total) % 10 + 48;
+                                if (moveRear -> previous == NULL)
+                                        break;
+                                moveResult = moveResult -> previous;
+                                moveRear = moveRear -> previous;
+                        }
+                }
+                if (tmpFront -> previous != NULL)
+                        tmpFront = tmpFront -> previous;
+                else if (tmpFront == front -> decimal -> head)
+                        tmpFront = front -> natural -> tail;
+                else
+                        break;
+                if (tmpResult -> previous != NULL)
+                        tmpResult = tmpResult -> previous;
+        }
+
+        while(rear -> decimal -> head != NULL) {
+                result -> decimal -> head = result -> natural -> tail;
+                result -> natural -> tail = result -> decimal -> head -> previous;
+                if (result -> natural -> tail == NULL)
+                        listrpush(result -> natural,'0');
+                listrpop(rear -> decimal);
+        }
+        while (rear -> natural -> head != NULL)
+                listrpop(rear -> natural);
+        while(front -> decimal -> head != NULL) {
+                result -> decimal -> head = result -> natural -> tail;
+                result -> natural -> tail = result -> decimal -> head -> previous;
+                if (result -> natural -> tail == NULL)
+                        listrpush(result -> natural,'0');
+                listrpop(front -> decimal);
+        }
+        while (front -> natural -> head != NULL)
+                listrpop(front -> natural);
 
         free(front -> natural);
         free(front -> decimal);
         free(rear -> natural);
         free(rear -> decimal);
         free(front);
-        free(rear);
-
-        return result;
+	free(rear);
+	return result;
 }
-	
-	
-	
-        
+                                                                                                                                                                104,0-1       85%                                                            1,23          Top
