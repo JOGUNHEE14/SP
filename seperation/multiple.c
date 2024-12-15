@@ -4,22 +4,16 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
 {
         struct inforNode *result = init();
 
-        //tmpResult랑 tmpFront는 반복문에서 한번 움직임
-        // moveResult랑 moveRear는 계속 움직임
         struct listNode *tmpResult;
         struct listNode *tmpFront;
         struct listNode *moveRear;
         struct listNode *moveResult;
 
-        //num은 결과값에 저장된 자리수에 해당하는숫자
-        // alpha는 올림값, y는 tmpResult의 값, x 는 moveRear의 값
-        // total은 x와y를 곱한값에 alpha와 num을 더한값
         int num = 0;
         int alpha = 0;
         int total = 0;
         int y = 0;
         int x = 0;
-        
         // 0일 때 빨리 리턴
         if (front -> natural -> head != NULL && front -> natural -> head -> data == '0' && front -> decimal -> head == NULL) {
                 listrpush(result -> natural ,'0');
@@ -30,7 +24,6 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
                 return result;
         }
 
-        // front에서 움직일 위치 선정(소수가 없으면 정수부터 시작)
         if (front -> decimal -> tail != NULL)
                 tmpFront = front -> decimal -> tail;
         else
@@ -55,9 +48,12 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
                         x = moveRear -> data - '0';
                         total = alpha + num + x * y;
                         alpha = total/10;
-
                         if (moveResult -> previous == NULL)
                                 listlpush(result -> natural, '0');
+
+                        moveResult -> data = total % 10 + 48;
+                        if (moveRear -> previous == NULL)
+                                                                listlpush(result -> natural, '0');
 
                         moveResult -> data = total % 10 + 48;
                         if (moveRear -> previous == NULL)
@@ -66,18 +62,16 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
                         moveRear = moveRear -> previous;
 
                 }
-                if (moveResult -> previous == NULL)
-                        listlpush(result -> natural,'0');
-        
                 if (moveRear == rear -> decimal -> head) {
+                        if (moveResult -> previous == NULL)
+                                listlpush(result -> natural,'0');
+                        moveResult = moveResult -> previous;
                         moveRear = rear -> natural -> tail;
-
                         while (1) {
                                 num = moveResult -> data - '0';
                                 x = moveRear -> data - '0';
                                 total = alpha + num + x * y;
                                 alpha = total/10;
-
                                 if (moveResult -> previous == NULL)
                                         listlpush(result -> natural, '0');
 
@@ -90,6 +84,7 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
                                 moveRear = moveRear -> previous;
                         }
                 }
+                
                 if (moveResult -> previous == NULL)
                         listlpush(result -> natural, alpha+48);
                 else
@@ -105,6 +100,7 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
                 tmpResult = tmpResult -> previous;
 
         }
+
         while(rear -> decimal -> head != NULL) {
                 if (result -> natural -> tail == NULL)
                         listrpush(result -> natural,'0');
@@ -127,13 +123,12 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
         else if (result -> natural -> head -> data == '0' && result -> natural -> head -> next != NULL)
                 listlpop(result -> natural);
 
-        while(result -> decimal -> tail != NULL) {
+        while (result -> decimal -> tail !=NULL) {
                 if (result -> decimal -> tail -> data == '0')
                         listrpop(result -> decimal);
                 else
                         break;
         }
-
         free(front -> natural);
         free(front -> decimal);
         free(rear -> natural);
@@ -142,6 +137,3 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
 
         return result;
 }
-
-
-
