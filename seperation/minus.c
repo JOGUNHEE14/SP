@@ -60,10 +60,10 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
 		//소수점 자릿수 맞추기위해 0채우기
     while (decimalFront != NULL || decimalRear != NULL) {
 	if (decimalFront == NULL) {
-     		listlpush(front->decimal, '0'); // 상위 리스트의 head를 수정
+     		listrpush(front->decimal, '0'); // 상위 리스트의 head를 수정
         }
 	if (decimalRear == NULL) {
-    		listlpush(rear->decimal, '0'); // 상위 리스트의 head를 수정
+    		listrpush(rear->decimal, '0'); // 상위 리스트의 head를 수정
 	}
 
 	if (decimalFront != NULL) {
