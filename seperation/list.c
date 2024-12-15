@@ -63,7 +63,7 @@ char listlpop(struct list *target)
         }
 
         free(popNode);
-
+}
         return popData;
 }
 
