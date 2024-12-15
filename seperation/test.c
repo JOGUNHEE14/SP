@@ -27,13 +27,14 @@ int main(void)
                 listrpush(number1 -> decimal, x);
                 x = getc(fp);
         }
-        struct inforNode *result = plus(number,number1);
-        printf("asdfafas");
-        printf("%c",result -> decimal -> head -> data);
+        struct inforNode *result = minus(number,number1);
+
+
         while (result->decimal->head!=NULL) {
                 x = listrpop(result->decimal);
                 printf("%c",x);
         }
+        printf(".");
         while (result -> natural -> head!=NULL) {
                 x = listrpop(result -> natural);
                 printf("%c",x);
