@@ -101,7 +101,7 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
 	//뺄셈 시작
     if (com ==1) {
 	    while (1) {
-		if (decimalFront != NULL && decimalRear != NULL) {
+		if (front->decimal->tail != NULL && rear->decimal->tail != NULL) {
 			 x = listrpop(front->decimal);
 			 y = listrpop(rear->decimal); 
 			 (x - beta%48 < y) ? beta = '1' : '0';
@@ -119,9 +119,9 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
           struct listNode* naturalRear = rear->natural->tail;
 
    	  while (1) {
-		if (naturalFront != NULL || naturalRear != NULL) {
-			 x = (naturalFront != NULL) ? listrpop(front->natural) : '0';
-			 y = (naturalRear != NULL) ? listrpop(rear->natural) : '0';
+		if (front->natural->tail != NULL || rear->natural->tail != NULL) {
+			 x = (front->natural->tail != NULL) ? listrpop(front->natural) : '0';
+			 y = (rear->natural->tail != NULL) ? listrpop(rear->natural) : '0';
 			 (x - beta%48 < y) ? beta = '1' : '0';
 			
 		 	 resultt = (x - beta%48 < y) ? (x - beta%48 + 10 - y) + 48 : (x - beta%48 - y);
@@ -134,7 +134,7 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
     }
     if (com ==2) {
 	    while (1) {
-		if (decimalFront != NULL && decimalRear != NULL) {
+		if (front->decimal->tail != NULL && rear->decimal->tail != NULL) {
 			x = listrpop(front->decimal);
 			y = listrpop(rear->decimal); 
 			(y - beta%48 < x) ? beta = '1' : '0';
@@ -152,9 +152,9 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
           struct listNode* naturalRear = rear->natural->tail;
 
    	  while (1) {
-		if (naturalFront != NULL || naturalRear != NULL) {
-			x = (naturalFront != NULL) ? listrpop(front->natural) : '0';
-			y = (naturalRear != NULL) ? listrpop(rear->natural) : '0';
+		if (front->natural->tail != NULL || rear->natural->tail != NULL) {
+			x = (front->natural->tail != NULL) ? listrpop(front->natural) : '0';
+			y = (rear->natural->tail != NULL) ? listrpop(rear->natural) : '0';
 			(y - beta%48 < x) ? beta = '1' : '0';
 			
 			resultt = (y - beta%48 < x) ? (y - beta%48 + 10 - x) + 48 : (y - beta%48 - x);
