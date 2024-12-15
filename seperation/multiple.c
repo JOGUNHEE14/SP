@@ -20,7 +20,7 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
 
         //num : result에 저장된 숫자의 정보를 담을 변수 (계산을 할 자리수에 있는 숫자를 저장)
         // alpha : 곱셈을 하고 올릴 수
-        // y : tmpFront로 숫자를 저장, x : moveRear의 숫자를 저장, total : num과 alpha x곱하기 y를 저장.
+        // y : tmpFront로 숫자를 저장, x : moveRear의 숫자를 저장, total : num과 alpha x곱하기y의 더한값 저장.
         int num = 0;
         int alpha = 0;
         int total = 0;
