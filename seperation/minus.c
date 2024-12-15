@@ -3,7 +3,7 @@
 struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
     struct inforNode *result = init();
 
-    char beta = '0';  // 자릿수빼기
+    char beta = '0';  // 자릿수 빼기
     char resultt;
     char x;
     char y;
@@ -96,8 +96,7 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
     decimalRear = rear->decimal->tail;
 
     // 뺄셈 시작
-    if (com == 1) 
-        //소수 맨 처음 계산은 beta가 0이어야하므로 첫자리만 먼저계산
+    if (com == 1) {
         if (front->decimal->tail != NULL && rear->decimal->tail != NULL) {
             x = listrpop(front->decimal);
             y = listrpop(rear->decimal);
@@ -110,29 +109,33 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
         while (1) {
             if (front->decimal->tail != NULL && rear->decimal->tail != NULL) {
                 x = listrpop(front->decimal);
+                x = x - beta % 48;
                 y = listrpop(rear->decimal);
-                (x - beta % 48 < y) ? beta = '1' : '0';
+                (x < y) ? beta = '1' : '0';
 
-                resultt = (x - beta % 48 < y) ? (x - beta % 48 + 10 - y) + 48 : (x - beta % 48 - y) + 48;
+                resultt = (x < y) ? (x + 10 - y) + 48 : (x - y) + 48;
                 listlpush(result->decimal, resultt);
-            } else
+            } else {
                 break;
+            }
         }
 
         // 자연수 부분 계산
-        naturalFront = front->natural->tail;
-        naturalRear = rear->natural->tail;
+        struct listNode* naturalFront = front->natural->tail;
+        struct listNode* naturalRear = rear->natural->tail;
 
         while (1) {
             if (front->natural->tail != NULL || rear->natural->tail != NULL) {
                 x = (front->natural->tail != NULL) ? listrpop(front->natural) : '0';
+                x = x - beta % 48;
                 y = (rear->natural->tail != NULL) ? listrpop(rear->natural) : '0';
-                (x - beta % 48 < y) ? beta = '1' : '0';
+                (x < y) ? beta = '1' : '0';
 
-                resultt = (x - beta % 48 < y) ? (x - beta % 48 + 10 - y) + 48 : (x - beta % 48 - y) + 48;
+                resultt = (x < y) ? (x + 10 - y) + 48 : (x - y) + 48;
                 listlpush(result->natural, resultt);
-            } else
+            } else {
                 break;
+            }
         }
     }
 
@@ -143,35 +146,39 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
 
             resultt = (y < x) ? (y + 10 - x) + 48 : (y - x) + 48;
             listlpush(result->decimal, resultt);
-            (y < x) ? beta = '1' : '0';
+            (x > y) ? beta = '1' : '0';
         }
 
         while (1) {
             if (front->decimal->tail != NULL && rear->decimal->tail != NULL) {
                 x = listrpop(front->decimal);
                 y = listrpop(rear->decimal);
-                (y - beta % 48 < x) ? beta = '1' : '0';
+                y = y - beta % 48;
+                (y < x) ? beta = '1' : '0';
 
-                resultt = (y - beta % 48 < x) ? (y - beta % 48 + 10 - x) + 48 : (y - beta % 48 - x) + 48;
+                resultt = (y < x) ? (y + 10 - x) + 48 : (y - x) + 48;
                 listlpush(result->decimal, resultt);
-            } else
+            } else {
                 break;
+            }
         }
 
         // 자연수 부분 계산
-        naturalFront = front->natural->tail;
-        naturalRear = rear->natural->tail;
+        struct listNode* naturalFront = front->natural->tail;
+        struct listNode* naturalRear = rear->natural->tail;
 
         while (1) {
             if (front->natural->tail != NULL || rear->natural->tail != NULL) {
                 x = (front->natural->tail != NULL) ? listrpop(front->natural) : '0';
                 y = (rear->natural->tail != NULL) ? listrpop(rear->natural) : '0';
-                (y - beta % 48 < x) ? beta = '1' : '0';
+                y = y - beta % 48;
+                (y < x) ? beta = '1' : '0';
 
-                resultt = (y - beta % 48 < x) ? (y - beta % 48 + 10 - x) + 48 : (y - beta % 48 - x) + 48;
+                resultt = (y < x) ? (y + 10 - x) + 48 : (y - x) + 48;
                 listlpush(result->natural, resultt);
-            } else
+            } else {
                 break;
+            }
             result->data = '-';
         }
     }
