@@ -50,3 +50,4 @@ char listlpop(struct list *target);
 
 struct inforNode *init();
 struct inforNode *plus(struct inforNode *front, struct inforNode *rear);
+struct inforNode *multiple(struct inforNode *front, struct inforNode *rear);
