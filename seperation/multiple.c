@@ -28,7 +28,7 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
                 tmpFront = front -> decimal -> tail;
         else
                 tmpFront = front -> natural -> tail;
-
+        
         listlpush(result -> natural, '0');
         tmpResult = result -> natural -> tail;
         struct listNode *b;
@@ -102,13 +102,11 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
                 tmpResult = tmpResult -> previous;
 
         }
-        b = result -> natural -> head;
-        printf("-----\n");
+        b = result -> natural ->head;
         while (b!=NULL) {
                 printf("%c",b->data);
-                b = b -> next;
+                b = b->next;
         }
-        printf("======\n");
         while(rear -> decimal -> head != NULL) {
                 if (result -> natural -> tail == NULL)
                         listrpush(result -> natural,'0');
@@ -126,6 +124,10 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
         }
         while (front -> natural -> head != NULL)
                 listrpop(front -> natural);
+        if (result -> natural -> head == NULL)
+                listlpush(result -> natural,'0');
+        else if (result -> natural -> head -> data == '0' && result -> natural -> head -> next != NULL)
+                listlpop(result -> natural);
 
         free(front -> natural);
         free(front -> decimal);
