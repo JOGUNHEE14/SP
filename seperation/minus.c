@@ -111,7 +111,12 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
                 x = listrpop(front->decimal);
                 x = x - beta % 48;
                 y = listrpop(rear->decimal);
-                (x < y) ? beta = '1' : '0';
+                if (y > x) {
+			beta = '1';
+		}
+ 		else if (x>=y) {
+			beta = '0';
+		}
 
                 resultt = (x < y) ? (x + 10 - y) + 48 : (x - y) + 48;
                 listlpush(result->decimal, resultt);
@@ -129,7 +134,12 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
                 x = (front->natural->tail != NULL) ? listrpop(front->natural) : '0';
                 x = x - beta % 48;
                 y = (rear->natural->tail != NULL) ? listrpop(rear->natural) : '0';
-                (x < y) ? beta = '1' : '0';
+                if (y > x) {
+			beta = '1';
+		}
+ 		else if (x>=y) {
+			beta = '0';
+		}
 
                 resultt = (x < y) ? (x + 10 - y) + 48 : (x - y) + 48;
                 listlpush(result->natural, resultt);
@@ -154,7 +164,12 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
                 x = listrpop(front->decimal);
                 y = listrpop(rear->decimal);
                 y = y - beta % 48;
-                (y < x) ? beta = '1' : '0';
+                if (y < x) {
+			beta = '1';
+		}
+ 		else if (y>=x) {
+			beta = '0';
+		}
 
                 resultt = (y < x) ? (y + 10 - x) + 48 : (y - x) + 48;
                 listlpush(result->decimal, resultt);
@@ -172,7 +187,12 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
                 x = (front->natural->tail != NULL) ? listrpop(front->natural) : '0';
                 y = (rear->natural->tail != NULL) ? listrpop(rear->natural) : '0';
                 y = y - beta % 48;
-                (y < x) ? beta = '1' : '0';
+                if (y < x) {
+			beta = '1';
+		}
+ 		else if (y>=x) {
+			beta = '0';
+		}
 
                 resultt = (y < x) ? (y + 10 - x) + 48 : (y - x) + 48;
                 listlpush(result->natural, resultt);
