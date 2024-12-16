@@ -7,7 +7,7 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
     char resultt;
     char x;
     char y;
-    int com = 0; // front랑 rear 중 뭐가 큰지 구분 front가 클 시 1, rear일 시 2
+    int com = 0; // front랑 rear 중 뭐가 큰지 구분 front가 크거나 같을시 1, rear가 클시 2
 
     // front와 rear 값 비교
     struct listNode* naturalFront = front->natural->head;
@@ -23,7 +23,7 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
             com = 1;
             break;
         } else if (naturalFront == NULL && naturalRear == NULL) {
-            com = 3;
+            com = 3; // 자연수의 자릿수가 같을경우 com=3으로 넘어감감
             break;
         }
         naturalFront = naturalFront->next;
@@ -33,10 +33,12 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
     // 다시 써야 돼서 초기화
     naturalFront = front->natural->head;
     naturalRear = rear->natural->head;
+
+	//앞자리부터 하나씩 꺼내어 크기비교
     if (com == 3) {
         while (1) {
             if (naturalFront == NULL && naturalRear == NULL) {
-                com = 4;
+                com = 4; //자연수부분도 같을 시 com=4로 넘어감
                 break;
             }
 
@@ -74,7 +76,7 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
 
     decimalFront = front->decimal->head;
     decimalRear = rear->decimal->head;
-
+	//소수부분 앞자리부터 하나씩꺼내 크기비교교
     if (com == 4) {
         while (decimalFront != NULL && decimalRear != NULL) {
             x = decimalFront->data;
@@ -151,7 +153,7 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
             }
         }
     }
-
+	//rear가 클시 y에서 x빼는 식으로 변경
     if (com == 2) {
         if (front->decimal->tail != NULL && rear->decimal->tail != NULL) {
             x = listrpop(front->decimal);
@@ -202,7 +204,7 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
             } else {
                 break;
             }
-            result->data = '-';
+            result->data = '-'; //결과가 음수이므로 데이터에 -부호 저장
         }
     }
 
