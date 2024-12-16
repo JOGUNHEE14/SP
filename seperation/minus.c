@@ -91,7 +91,10 @@ struct inforNode* minus(struct inforNode *front, struct inforNode *rear) {
             decimalRear = decimalRear->next;
         }
     }
-
+ 	//두 수가 같을경우
+    if (com==4) {
+	com = 1;
+    }
     decimalFront = front->decimal->tail;
     decimalRear = rear->decimal->tail;
 
