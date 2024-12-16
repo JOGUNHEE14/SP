@@ -26,7 +26,7 @@ int main(void)
                         
                 else if (x == ' '); // 대충 공백처리
 
-                // 대충 숫자면 프린트 -> 숫자를 리스트노드를 이용해서 저장해야함
+                // 대충 숫자면 프린트 -> 숫자를 inforNode를 이용해서 저장해야함
                 else if (('0' <= x && x <= '9')) {
                         struct inforNode *number = init();
                         
