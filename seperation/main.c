@@ -10,13 +10,16 @@ int main(void)
 
         operator -> next = NULL; // operator가 가라키는 포인터 초기화
 
-        FILE *file = fopen("tmp.txt", "r");
-        if (file == NULL) {
-                perror("error");
-                return -1;
+        try {
+                FILE *file = fopen("tmp.txt", "r");
+                printf("파일을 정상적으로 열었습니다.\n");
+        }
+        catch {
+                printf("파일이 존재하지 않습니다.\n");
+                exit(0);
         }
         
-        printf("Input: \n");
+        printf("====== Welcom to infinite calculator! ======\n");
 
         while (1) {
                 x = getc(file); // file 포인터를 만들어야함.
@@ -32,16 +35,17 @@ int main(void)
                         //data에 부호 넣어야 하는데 대충 플러스로 함
                         while ('0' <= x && x <= '9') {
                                 listrpush(number -> natural, x);
-                                x = getc();
+                                x = getc(file);
                         }
         
                         if (x == '.') {
                                 x = getc();
                                 while ('0' <= x && x <= '9') {
                                         listrpush(number -> decimal, x);
-                                        x = getc();
+                                        x = getc(file);
                                 }
                         }
+
                 }
                 
                 // 닫는 괄호가 입력으로 들어오면 여는 괄호가 나올 때 까지 연산자 꺼내기
