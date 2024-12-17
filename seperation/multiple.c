@@ -168,6 +168,7 @@ struct inforNode *multiplication(struct inforNode *front, struct inforNode *rear
         free(rear -> natural);
         free(rear -> decimal);
         free(front);
+        free(rear);
 
         return result;
 }
