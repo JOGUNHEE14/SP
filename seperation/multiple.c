@@ -2,7 +2,7 @@
 
 // 소수점을 무시하고 곱한뒤 소수점을 옮기는 방식으로 만듬
 
-struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
+struct inforNode *multiplication(struct inforNode *front, struct inforNode *rear)
 {
         struct inforNode *result = init();
 
