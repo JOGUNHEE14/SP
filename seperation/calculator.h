@@ -40,8 +40,9 @@ char stackpop(struct stackNode *target);
 struct inforNode* plus(struct inforNode* front, struct inforNode* rear);
 
 void initQueue(struct queueNode **head, struct queueNode** tail);
-void push(struct queueNode **head, struct queueNode**tail);
-struct inforNode *pop(struct queueNode **head, struct queueNode** tail);
+void push(struct queueNode *head, struct inforNode *data);
+int isEmpty(struct queueNode *head);
+struct inforNode *pop(struct queueNode *head);
 
 void listrpush(struct list *target, char data);
 void listlpush(struct list *target, char data);
