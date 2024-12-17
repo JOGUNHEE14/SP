@@ -9,6 +9,7 @@ int main(void)
         struct queueNode *numbers = malloc(sizeof(struct queueNode)); // listNode에 저장된 숫자와 부호가 저장된 infoNode를 저장할 예정 
 
         operator -> next = NULL; // operator가 가라키는 포인터 초기화
+        numbers -> next = NULL;
 
         try {
                 FILE *file = fopen("tmp.txt", "r");
@@ -20,6 +21,8 @@ int main(void)
         }
         
         printf("====== Welcom to infinite calculator! ======\n");
+        printf("Enter the expression in infix notation.\n");
+        printf("Input : ");
 
         while (1) {
                 x = getc(file); // file 포인터를 만들어야함.
@@ -30,23 +33,27 @@ int main(void)
 
                 // 대충 숫자면 프린트 -> 숫자를 inforNode를 이용해서 저장해야함
                 else if (('0' <= x && x <= '9')) {
+                        printf("%c",x);
                         struct inforNode *number = init();
                         
                         //data에 부호 넣어야 하는데 대충 플러스로 함
                         while ('0' <= x && x <= '9') {
                                 listrpush(number -> natural, x);
                                 x = getc(file);
+                                printf("%c",x);
                         }
         
                         if (x == '.') {
                                 x = getc();
+                                printf("%c",x);
                                 while ('0' <= x && x <= '9') {
                                         listrpush(number -> decimal, x);
                                         x = getc(file);
+                                        printf("%c",x);
                                 }
                         }
-
-                }
+                        push(numbers, number);
+                }       
                 
                 // 닫는 괄호가 입력으로 들어오면 여는 괄호가 나올 때 까지 연산자 꺼내기
                 if (x == ')') {  
@@ -59,7 +66,7 @@ int main(void)
                         gwalho-=1;
                 }
 
-                // 여는 괄호가 들어오면 l번의 값을 늘림
+                // 여는 괄호가 들어오면 gwalho에 값을 1늘림
                 else if (x == '(') { 
                         //곱셈 기호 생략
                         //숫자 * 괄호 or 괄호 * 괄호  st
