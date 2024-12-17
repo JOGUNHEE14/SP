@@ -6,6 +6,11 @@ struct inforNode *multiple(struct inforNode *front, struct inforNode *rear)
 {
         struct inforNode *result = init();
 
+        if ((front -> data == '+' && rear -> data == '+') || (front -> data == '-' && rear -> data == '-'))
+                result -> data = '+';
+        else
+                result -> data = '-';
+
         //tmpFront는 곱하는 숫자를 한칸씩 늘리는 변수, tmpResult는 tmpFront와 같은 자리수를 따라감
         // moveRear랑 moveResult는 계속 한칸씩 자리수를 늘림
 
