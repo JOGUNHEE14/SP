@@ -101,8 +101,8 @@ int priority(struct stackNode *target, char com) {
         return 0;
 }
 
-void initQueue(struct queueNode** head, struct queueNode** tail) {
-    *head = NULL; //큐가 비어있음
+void initQueue(struct queueNode* head, struct queueNode** tail) {
+    head = NULL; //큐가 비어있음
     *tail = NULL; //큐가 비어잇음
 }
 
@@ -121,14 +121,14 @@ void push(struct queueNode *head, struct inforNode *data) {
         }
         newQNode->data = data;  //queueNode에 inforNode 저장
         newQNode->next = head -> next;
-        head -> next = newQnode;
+        head -> next = newQNode;
 
 }
 
 //큐에서 데이터 제거
 //struct inforNode* data : 큐에 저장된 데이터 => pop함수의 반환형을 struct inforNode로 설정
 struct inforNode* pop(struct queueNode* head) {
-        if (isEmpty(*head)) {
+        if (isEmpty(head)) {
                 printf("Queue가 비어있습니다.");
                 return NULL;
         }
