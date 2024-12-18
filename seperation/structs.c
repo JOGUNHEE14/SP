@@ -101,9 +101,8 @@ int priority(struct stackNode *target, char com) {
         return 0;
 }
 
-void initQueue(struct queueNode* head, struct queueNode** tail) {
+void initQueue(struct queueNode* head) {
     head = NULL; //큐가 비어있음
-    *tail = NULL; //큐가 비어잇음
 }
 
 //큐가 비어 있는지 확인하는 함수
