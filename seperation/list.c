@@ -1,6 +1,3 @@
-
-
-
 #include "calculator.h"
 
 void listrpush(struct list *target, char data) //리스트 tail에 데이터 추가하는 함수
