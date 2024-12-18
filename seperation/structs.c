@@ -15,7 +15,7 @@ struct inforNode *init()
         return number;
 }
     
-  void listrpush(struct list *target, char data)
+void listrpush(struct list *target, char data)
 {
         struct listNode *pushNode = malloc(sizeof(struct listNode));
 
