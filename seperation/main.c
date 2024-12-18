@@ -118,13 +118,8 @@ int main(void)
                 // 여는 괄호가 들어오면 gwalho에 값을 1늘림
                 else if (x == '(') { 
                         //곱셈 기호 생략
-                        //숫자 * 괄호 or 괄호 * 괄호  st
-                        if (('0' <= pre && pre <= '9') || pre == ')') {
-                                stackpush(operator, '*');
-                                pre = x;
-                        }
-                        //음수 부호 * 괄호
-                        else if (pre == '-') {
+                        //숫자 * 괄호 or 괄호 * 괄호 or 음수 부호 * 괄호
+                        if (('0' <= pre && pre <= '9') || pre == ')' || pre == '-') {
                                 stackpush(operator, '*');
                                 pre = x;
                         }
