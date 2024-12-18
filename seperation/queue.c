@@ -21,7 +21,7 @@ void push(struct queueNode *head, struct inforNode *data) {
         }
         newQNode->data = data;  //큐에 inforNode 저장
         newQNode->next = head -> next; //newQNode 큐에 연결(head > newQNode > 큐)
-        target -> next = newQnode; //target의 next를 newQNode로 연결
+        target -> next = newQNode; //target의 next를 newQNode로 연결
 
 }
 
