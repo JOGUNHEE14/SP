@@ -47,7 +47,7 @@ int main(void)
                         }
         
                         if (x == '.') {
-                                x = getc();
+                                x = getc(file);
                                 printf("%c",x);
                                 while ('0' <= x && x <= '9') {
                                         listrpush(number -> decimal, x);
