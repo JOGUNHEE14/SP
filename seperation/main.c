@@ -7,21 +7,16 @@ int main(void)
         int gwalho = 0; // 괄호가 스택에 있는지 확인할 때 쓸 변수
         struct stackNode *operator = malloc(sizeof(struct stackNode)); // 스택을 처음 만들 때 operator를 사용해서 push할 예정
         struct queueNode *numbers = malloc(sizeof(struct queueNode)); // listNode에 저장된 숫자와 부호가 저장된 infoNode를 저장할 예정 
-        struct inforNode *front_num;
-        struct inforNode *rear_num;
-        struct inforNode *result_num;
+        struct inforNode *front_number;
+        struct inforNode *rear_number;
+        struct inforNode *result_number;
         
         operator -> next = NULL; // operator가 가라키는 포인터 초기화
         numbers -> next = NULL;
 
-        try {
-                FILE *file = fopen("tmp.txt", "r");
-                printf("파일을 정상적으로 열었습니다.\n");
-        }
-        catch {
-                printf("파일이 존재하지 않습니다.\n");
-                exit(0);
-        }
+        FILE *file = fopen("tmp.txt", "r");
+        printf("파일을 정상적으로 열었습니다.\n");
+
         
         printf("====== Welcome to infinite calculator! ======\n");
         printf("Enter the expression in infix notation.\n");
@@ -65,27 +60,27 @@ int main(void)
                                 if (oper == '(')
                                         break;
                                 
-                                rear_num = pop(numbers);
+                                rear_number = pop(numbers);
                                 if (oper = '-') {
                                         if (isEmpty(numbers)) {
-                                                rear_num -> data = (rear_num -> data == '+') ? '-' : '+';
-                                                push(numbers,rear_num);
+                                                rear_number -> data = (rear_number -> data == '+') ? '-' : '+';
+                                                push(numbers,rear_number);
                                         }
                                         else {
-                                                front_num = pop(numbers);
-                                                if (front_number -> data =='-' && rear_num -> data =='+') {
-                                                        result_num = plus(front_number,rear_number);
-                                                        result_num -> data = '-';
-                                                        push(numbers,result_num);
+                                                front_number = pop(numbers);
+                                                if (front_number -> data =='-' && rear_number -> data =='+') {
+                                                        result_number = plus(front_number,rear_number);
+                                                        result_number -> data = '-';
+                                                        push(numbers,result_number);
                                                 }
-                                                else if(front -> data == '+' && rear_num -> data =='-') {
-                                                        result_num = plus(front_number,rear_number);
-                                                        result_num -> data = '+';
-                                                        push(numbers,result_num);
+                                                else if(front_number -> data == '+' && rear_number -> data =='-') {
+                                                        result_number = plus(front_number,rear_number);
+                                                        result_number -> data = '+';
+                                                        push(numbers,result_number);
                                                 }
                                                 else {
-                                                        result_num = minus(front_number,rear_number);
-                                                        push(numbers,result_num);
+                                                        result_number = minus(front_number,rear_number);
+                                                        push(numbers,result_number);
                                                 }
                                         }              
                                 }
@@ -94,22 +89,22 @@ int main(void)
                                         if (isEmpty(numbers))
                                                 push(numbers,rear_number);
                                         else {
-                                                front_num = pop(numbers);
-                                                if (front -> data == '+' && rear -> data == '+') {
-                                                        result_num = plus(front_number,rear_number);
-                                                        result_num -> data = '+';
-                                                        push(numbers,result_num);
+                                                front_number = pop(numbers);
+                                                if (front_number -> data == '+' && rear_number -> data == '+') {
+                                                        result_number = plus(front_number,rear_number);
+                                                        result_number -> data = '+';
+                                                        push(numbers,result_number);
                                                 }
                                                 else {
-                                                        result_num = minus(front_number,rear_number);
-                                                        push(numbers,result_num);
+                                                        result_number = minus(front_number,rear_number);
+                                                        push(numbers,result_number);
                                                 }
                                         }
                                 }
                                 else if (oper == '*') {
-                                        front_num = pop(numbers);
-                                        result_num = multiplication(front_num, rear_num);
-                                        push(numbers,result_num);
+                                        front_number = pop(numbers);
+                                        result_number = multiplication(front_number, rear_number);
+                                        push(numbers,result_number);
                                 }
                         } 
                         gwalho-=1;
@@ -136,28 +131,28 @@ int main(void)
                 else {
                         while (operator -> next != NULL) {
                                 char oper = stackpop(operator);
-                                rear_num = pop(numbers);
+                                rear_number = pop(numbers);
                                 
                                 if (oper = '-') {
                                         if (isEmpty(numbers)) {
-                                                rear_num -> data = (rear_num -> data == '+') ? '-' : '+';
-                                                push(numbers,rear_num);
+                                                rear_number -> data = (rear_number -> data == '+') ? '-' : '+';
+                                                push(numbers,rear_number);
                                         }
                                         else {
-                                                front_num = pop(numbers);
-                                                if (front_number -> data =='-' && rear_num -> data =='+') {
-                                                        result_num = plus(front_number,rear_number);
-                                                        result_num -> data = '-';
-                                                        push(numbers,result_num);
+                                                front_number = pop(numbers);
+                                                if (front_number -> data =='-' && rear_number -> data =='+') {
+                                                        result_number = plus(front_number,rear_number);
+                                                        result_number -> data = '-';
+                                                        push(numbers,result_number);
                                                 }
-                                                else if(front -> data == '+' && rear_num -> data =='-') {
-                                                        result_num = plus(front_number,rear_number);
-                                                        result_num -> data = '+';
-                                                        push(numbers,result_num);
+                                                else if(front_number -> data == '+' && rear_number -> data =='-') {
+                                                        result_number = plus(front_number,rear_number);
+                                                        result_number -> data = '+';
+                                                        push(numbers,result_number);
                                                 }
                                                 else {
-                                                        result_num = minus(front_number,rear_number);
-                                                        push(numbers,result_num);
+                                                        result_number = minus(front_number,rear_number);
+                                                        push(numbers,result_number);
                                                 }
                                         }              
                                 }
@@ -165,22 +160,22 @@ int main(void)
                                         if (isEmpty(numbers))
                                                 push(numbers,rear_number);
                                         else {
-                                                front_num = pop(numbers);
-                                                if (front -> data == '+' && rear -> data == '+') {
-                                                        result_num = plus(front_number,rear_number);
-                                                        result_num -> data = '+';
-                                                        push(numbers,result_num);
+                                                front_number = pop(numbers);
+                                                if (front_number -> data == '+' && rear_number -> data == '+') {
+                                                        result_number = plus(front_number,rear_number);
+                                                        result_number -> data = '+';
+                                                        push(numbers,result_number);
                                                 }
                                                 else {
-                                                        result_num = minus(front_number,rear_number);
-                                                        push(numbers,result_num);
+                                                        result_number = minus(front_number,rear_number);
+                                                        push(numbers,result_number);
                                                 }
                                         }
                                 }
                                 else if (oper == '*') {
-                                        front_num = pop(numbers);
-                                        result_num = multiplication(front_num, rear_num);
-                                        push(numbers,result_num);
+                                        front_number = pop(numbers);
+                                        result_number = multiplication(front_number, rear_number);
+                                        push(numbers,result_number);
                                 } 
                                 if (priority(operator, oper) == 2)
                                         break;
@@ -192,24 +187,24 @@ int main(void)
                 char oper = stackpop(operator);
                 if (oper = '-') {
                         if (isEmpty(numbers)) {
-                                rear_num -> data = (rear_num -> data == '+') ? '-' : '+';
-                                push(numbers,rear_num);
+                                rear_number -> data = (rear_number -> data == '+') ? '-' : '+';
+                                push(numbers,rear_number);
                         }
                         else {
-                                front_num = pop(numbers);
-                                if (front_number -> data =='-' && rear_num -> data =='+') {
-                                        result_num = plus(front_number,rear_number);
-                                        result_num -> data = '-';
-                                        push(numbers,result_num);
+                                front_number = pop(numbers);
+                                if (front_number -> data =='-' && rear_number -> data =='+') {
+                                        result_number = plus(front_number,rear_number);
+                                        result_number -> data = '-';
+                                        push(numbers,result_number);
                                 }
-                                else if(front -> data == '+' && rear_num -> data =='-') {
-                                        result_num = plus(front_number,rear_number);
-                                        result_num -> data = '+';
-                                        push(numbers,result_num);
+                                else if(front_number -> data == '+' && rear_number -> data =='-') {
+                                        result_number = plus(front_number,rear_number);
+                                        result_number -> data = '+';
+                                        push(numbers,result_number);
                                 }
                                 else {
-                                        result_num = minus(front_number,rear_number);
-                                        push(numbers,result_num);
+                                        result_number = minus(front_number,rear_number);
+                                        push(numbers,result_number);
                                 }
                         }              
                 }
@@ -217,41 +212,41 @@ int main(void)
                         if (isEmpty(numbers))
                                 push(numbers,rear_number);
                         else {
-                                front_num = pop(numbers);
-                                if (front -> data == '+' && rear -> data == '+') {
-                                        result_num = plus(front_number,rear_number);
-                                        result_num -> data = '+';
-                                        push(numbers,result_num);
+                                front_number = pop(numbers);
+                                if (front_number -> data == '+' && rear_number -> data == '+') {
+                                        result_number = plus(front_number,rear_number);
+                                        result_number -> data = '+';
+                                        push(numbers,result_number);
                                 }
                                 else {
-                                        result_num = minus(front_number,rear_number);
-                                        push(numbers,result_num);
+                                        result_number = minus(front_number,rear_number);
+                                        push(numbers,result_number);
                                 }
                         }
                 }
                 else if (oper == '*') {
-                        front_num = pop(numbers);
-                        result_num = multiplication(front_num, rear_num);
-                        push(numbers,result_num);
+                        front_number = pop(numbers);
+                        result_number = multiplication(front_number, rear_number);
+                        push(numbers,result_number);
                 }
         }
         
-        result_num = pop(numbers);
+        result_number = pop(numbers);
         
         printf("\n");
         printf("result : ");
         
-        while (result->natural->head!=NULL) {
-                x = listlpop(result->natural);
+        while (result_number->natural->head!=NULL) {
+                x = listlpop(result_number->natural);
                 printf("%c",x);
         }
-        if (result -> decimal -> head != NULL) {
+        if (result_number -> decimal -> head != NULL) {
                 printf(".");
-                while (result -> decimal -> head!=NULL) {
-                        x = listlpop(result -> decimal);
+                while (result_number -> decimal -> head!=NULL) {
+                        x = listlpop(result_number -> decimal);
                         printf("%c",x);
                 }
         }
-        print("\n");
+        printf("\n");
         return 0;
 }
