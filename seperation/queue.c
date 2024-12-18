@@ -19,8 +19,8 @@ void push(struct queueNode *head, struct inforNode *data) {
                 printf("메모리 할당 불가");
                 return;
         }
-        newQNode->data = data;  //큐에 inforNode 저장
-        newQNode->next = head -> next; //newQNode 큐에 연결(head > newQNode > 큐)
+        newQNode -> data = data;  //큐에 inforNode 저장
+        newQNode -> next = head -> next; //newQNode 큐에 연결(head > newQNode > 큐)
         target -> next = newQNode; //target의 next를 newQNode로 연결
 
 }
@@ -33,7 +33,7 @@ struct inforNode* pop(struct queueNode* head) {
                 printf("Queue가 비어있습니다.");
                 return NULL;
         }
-        struct queueNode* temp = head->next; //head->next 임시 노드(temp)에 저장, free한 후에도 head 접근 가능
+        struct queueNode* temp = head -> next; //head->next 임시 노드(temp)에 저장, free한 후에도 head 접근 가능
         struct inforNode* data = temp -> data; // 저장된 데이터 추출
         head -> next = temp -> next; // 다음 노드로 head->next 갱신
         
