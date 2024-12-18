@@ -23,7 +23,7 @@ int main(void)
                 exit(0);
         }
         
-        printf("====== Welcom to infinite calculator! ======\n");
+        printf("====== Welcome to infinite calculator! ======\n");
         printf("Enter the expression in infix notation.\n");
         printf("Input : ");
 
