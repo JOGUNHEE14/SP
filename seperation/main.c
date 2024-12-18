@@ -177,7 +177,7 @@ int main(void)
                                         result_number = multiplication(front_number, rear_number);
                                         push(numbers,result_number);
                                 } 
-                                if (priority(operator, oper) == 2)
+                                if (operator -> next == NULL || priority(operator, oper) == 2)
                                         break;
                         }
                         stackpush(operator, x);
