@@ -7,9 +7,9 @@ int main(void)
         int gwalho = 0; // 괄호가 스택에 있는지 확인할 때 쓸 변수
         struct stackNode *operator = malloc(sizeof(struct stackNode)); // 스택을 처음 만들 때 operator를 사용해서 push할 예정
         struct queueNode *numbers = malloc(sizeof(struct queueNode)); // listNode에 저장된 숫자와 부호가 저장된 infoNode를 저장할 예정 
-        struct *inforNode front_num;
-        struct *inforNode rear_num;
-        struct *inforNode result_num;
+        struct inforNode *front_num;
+        struct inforNode *rear_num;
+        struct inforNode *result_num;
         
         operator -> next = NULL; // operator가 가라키는 포인터 초기화
         numbers -> next = NULL;
