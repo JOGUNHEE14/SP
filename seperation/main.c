@@ -22,14 +22,12 @@ int main(void)
         printf("Enter the expression in infix notation.\n");
         printf("Input : ");
 
-        x = getc(file);
-        while (1) {
-                printf("%c",x);
+
+        while (x!= EOF && x != '\n') {
+                x=getc(file);
                 pre = x; //이전 문자(pre) 업데이트
-                if (x == '\n' || x == EOF || x == '\0')
-                        break;
-                        
-                else if (x == ' '); // 대충 공백처리
+                
+                if (x == ' '); // 대충 공백처리
 
                 // 대충 숫자면 프린트 -> 숫자를 inforNode를 이용해서 저장해야함
                 else if (('0' <= x && x <= '9')) {
@@ -38,24 +36,28 @@ int main(void)
                         //data에 부호 넣어야 하는데 대충 플러스로 함
                         while ('0' <= x && x <= '9') {
                                 listrpush(number -> natural, x);
-                                x = getc(file);
                                 printf("%c",x);
+                                x = getc(file);
                         }
         
                         if (x == '.') {
-                                x = getc(file);
                                 printf("%c",x);
+                                x = getc(file);
+                        
                                 while ('0' <= x && x <= '9') {
                                         listrpush(number -> decimal, x);
-                                        x = getc(file);
                                         printf("%c",x);
+                                        x = getc(file);               
                                 }
                         }
                         push(numbers, number);
+                        ungetc(x,file);
+                        continue;
                 }       
                 
                 // 닫는 괄호가 입력으로 들어오면 여는 괄호가 나올 때 까지 연산자 꺼내기
-                if (x == ')') {  
+                else if (x == ')') {  
+                        printf("%c",x);
                         while (operator -> next != NULL) {
                                 char oper = stackpop(operator);
                                 if (oper == '(')
@@ -113,6 +115,7 @@ int main(void)
 
                 // 여는 괄호가 들어오면 gwalho에 값을 1늘림
                 else if (x == '(') { 
+                        printf("%c",x);
                         //곱셈 기호 생략
                         //숫자 * 괄호 or 괄호 * 괄호 or 음수 부호 * 괄호
                         if (('0' <= pre && pre <= '9') || pre == ')' || pre == '-') {
@@ -124,11 +127,13 @@ int main(void)
 
                 // 여는 괄호가 주어지면 계속 연산자를 넣어야하기 때문에 l이 0이 아니고 스택의 마지막에 저장된 연산자보다 넣을 연산자가 크면 push
                 else if (gwalho != 0 || operator -> next == NULL || priority(operator, x) == 2) {
+                        printf("%c",x);
                         stackpush(operator, x);
                 }
 
                 // 넣을 연산자랑 스택에 연산자의 우선순위가 작거나 같으면 가능한 만큼 pop하고 연산자 push
                 else if (x=='+' || x == '-' || x == '*' || x == '/'){
+                        printf("%c",x);
                         while (operator -> next != NULL) {
                                 char oper = stackpop(operator);
                                 rear_number = pop(numbers);
@@ -182,7 +187,7 @@ int main(void)
                         }
                         stackpush(operator, x);
                 }
-                x=getc(file);
+                
         }  
         while (operator -> next != NULL) {
                 char oper = stackpop(operator);
@@ -216,7 +221,6 @@ int main(void)
                         }
                 }
                 else if (oper == '*') {
-                        front_number = pop(numbers);
                         result_number = multiplication(front_number, rear_number);
                         push(numbers,result_number);
                 }
