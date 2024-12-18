@@ -121,7 +121,7 @@ void push(struct queueNode *head, struct inforNode *data) {
         }
         newQNode->data = data;  //queueNode에 inforNode 저장
         newQNode->next = head -> next;
-        target -> next = newQnode;
+        head -> next = newQnode;
 
 }
 
