@@ -71,10 +71,7 @@ struct inforNode *multiplication(struct inforNode *front, struct inforNode *rear
                         x = moveRear -> data - '0';
                         total = alpha + num + x * y;
                         alpha = total/10;
-                        if (moveResult -> previous == NULL)
-                                listlpush(result -> natural, '0');
 
-                        moveResult -> data = total % 10 + 48;
                         if (moveRear -> previous == NULL)
                                 listlpush(result -> natural, '0');
 
@@ -96,11 +93,11 @@ struct inforNode *multiplication(struct inforNode *front, struct inforNode *rear
                                 x = moveRear -> data - '0';
                                 total = alpha + num + x * y;
                                 alpha = total/10;
+                                
                                 if (moveResult -> previous == NULL)
                                         listlpush(result -> natural, '0');
 
                                 moveResult -> data = total % 10 + 48;
-
 
                                 if (moveRear -> previous == NULL)
                                         break;
