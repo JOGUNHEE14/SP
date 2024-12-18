@@ -2,7 +2,7 @@
 
 int main(void)
 {
-        char pre = '\0'; // x(현재)의 이전 문자자
+        char pre = '\0'; // x(현재)의 이전 문자
         char x; //입력을 하나하나 받을 때 쓸 문자열 타입변수
         int gwalho = 0; // 괄호가 스택에 있는지 확인할 때 쓸 변수
         struct stackNode *operator = malloc(sizeof(struct stackNode)); // 스택을 처음 만들 때 operator를 사용해서 push할 예정
@@ -116,7 +116,7 @@ int main(void)
                         //숫자 * 괄호 or 괄호 * 괄호 or 음수 부호 * 괄호
                         if (('0' <= pre && pre <= '9') || pre == ')' || pre == '-') {
                                 stackpush(operator, '*');
-                                pre = x;
+                                pre = x; //이전 문자(pre) 업데이트
                         }
                         stackpush(operator, x);
                         gwalho+=1;
