@@ -5,6 +5,8 @@ int main(void)
         char pre = '\0'; // x(현재)의 이전 문자
         char x; //입력을 하나하나 받을 때 쓸 문자열 타입변수
         int gwalho = 0; // 괄호가 스택에 있는지 확인할 때 쓸 변수
+        int start = 1;
+        int minus = 0;
         struct stackNode *operator = malloc(sizeof(struct stackNode)); // 스택을 처음 만들 때 operator를 사용해서 push할 예정
         struct queueNode *numbers = malloc(sizeof(struct queueNode)); // listNode에 저장된 숫자와 부호가 저장된 infoNode를 저장할 예정 
         struct inforNode *front_number;
@@ -122,12 +124,16 @@ int main(void)
                                 stackpush(operator, '*');
                         }
                         stackpush(operator, x);
+                        start = 1;
                         gwalho+=1;
                 }
 
                 // 여는 괄호가 주어지면 계속 연산자를 넣어야하기 때문에 l이 0이 아니고 스택의 마지막에 저장된 연산자보다 넣을 연산자가 크면 push
                 else if (gwalho != 0 || operator -> next == NULL || priority(operator, x) == 2) {
                         printf("%c",x);
+                        if (x == '-' && start == 1)
+                                minus = 1;
+                        start = 0
                         stackpush(operator, x);
                 }
 
@@ -230,6 +236,9 @@ int main(void)
         
         printf("\n");
         printf("result : ");
+
+        if (result_number -> data == '-')
+                printf("-");
         
         while (result_number->natural->head!=NULL) {
                 x = listlpop(result_number->natural);
