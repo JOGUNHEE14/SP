@@ -22,10 +22,10 @@ int main(void)
         printf("Enter the expression in infix notation.\n");
         printf("Input : ");
 
+        x = getc(file);
         while (1) {
+                printf("%c",x);
                 pre = x; //이전 문자(pre) 업데이트
-                
-                x = getc(file); // file 포인터를 만들어야함.
                 if (x == '\n' || x == EOF || x == '\0')
                         break;
                         
@@ -33,7 +33,6 @@ int main(void)
 
                 // 대충 숫자면 프린트 -> 숫자를 inforNode를 이용해서 저장해야함
                 else if (('0' <= x && x <= '9')) {
-                        printf("%c",x);
                         struct inforNode *number = init();
                         
                         //data에 부호 넣어야 하는데 대충 플러스로 함
@@ -63,7 +62,7 @@ int main(void)
                                         break;
                                 
                                 rear_number = pop(numbers);
-                                if (oper = '-') {
+                                if (oper == '-') {
                                         if (isEmpty(numbers)) {
                                                 rear_number -> data = (rear_number -> data == '+') ? '-' : '+';
                                                 push(numbers,rear_number);
@@ -129,12 +128,12 @@ int main(void)
                 }
 
                 // 넣을 연산자랑 스택에 연산자의 우선순위가 작거나 같으면 가능한 만큼 pop하고 연산자 push
-                else {
+                else if (x=='+' || x == '-' || x == '*' || x == '/'){
                         while (operator -> next != NULL) {
                                 char oper = stackpop(operator);
                                 rear_number = pop(numbers);
                                 
-                                if (oper = '-') {
+                                if (oper == '-') {
                                         if (isEmpty(numbers)) {
                                                 rear_number -> data = (rear_number -> data == '+') ? '-' : '+';
                                                 push(numbers,rear_number);
@@ -183,46 +182,37 @@ int main(void)
                         }
                         stackpush(operator, x);
                 }
-        }
+                x=getc(file);
+        }  
         while (operator -> next != NULL) {
                 char oper = stackpop(operator);
-                if (oper = '-') {
-                        if (isEmpty(numbers)) {
-                                rear_number -> data = (rear_number -> data == '+') ? '-' : '+';
-                                push(numbers,rear_number);
+                rear_number = pop(numbers);
+                front_number = pop(numbers);
+                if (oper == '-') {
+                        if (front_number -> data =='-' && rear_number -> data =='+') {
+                                result_number = plus(front_number,rear_number);
+                                result_number -> data = '-';
+                                push(numbers,result_number);
+                        }
+                        else if(front_number -> data == '+' && rear_number -> data =='-') {
+                                result_number = plus(front_number,rear_number);
+                                result_number -> data = '+';
+                                push(numbers,result_number);
                         }
                         else {
-                                front_number = pop(numbers);
-                                if (front_number -> data =='-' && rear_number -> data =='+') {
-                                        result_number = plus(front_number,rear_number);
-                                        result_number -> data = '-';
-                                        push(numbers,result_number);
-                                }
-                                else if(front_number -> data == '+' && rear_number -> data =='-') {
-                                        result_number = plus(front_number,rear_number);
-                                        result_number -> data = '+';
-                                        push(numbers,result_number);
-                                }
-                                else {
-                                        result_number = minus(front_number,rear_number);
-                                        push(numbers,result_number);
-                                }
-                        }              
+                                result_number = minus(front_number,rear_number);
+                                push(numbers,result_number);
+                        }                 
                 }
                 else if (oper == '+') {
-                        if (isEmpty(numbers))
-                                push(numbers,rear_number);
+                        if (front_number -> data == '+' && rear_number -> data == '+') {
+                                result_number = plus(front_number,rear_number);
+                                result_number -> data = '+';
+                                push(numbers,result_number);
+                        }
                         else {
-                                front_number = pop(numbers);
-                                if (front_number -> data == '+' && rear_number -> data == '+') {
-                                        result_number = plus(front_number,rear_number);
-                                        result_number -> data = '+';
-                                        push(numbers,result_number);
-                                }
-                                else {
-                                        result_number = minus(front_number,rear_number);
-                                        push(numbers,result_number);
-                                }
+                                result_number = minus(front_number,rear_number);
+                                push(numbers,result_number);
                         }
                 }
                 else if (oper == '*') {
