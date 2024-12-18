@@ -72,7 +72,7 @@ struct inforNode *multiplication(struct inforNode *front, struct inforNode *rear
                         total = alpha + num + x * y;
                         alpha = total/10;
 
-                        if (moveRear -> previous == NULL)
+                        if (moveResult -> previous == NULL)
                                 listlpush(result -> natural, '0');
 
                         moveResult -> data = total % 10 + 48;
