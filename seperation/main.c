@@ -23,6 +23,8 @@ int main(void)
         printf("Input : ");
 
         while (1) {
+                pre = x; //이전 문자(pre) 업데이트
+                
                 x = getc(file); // file 포인터를 만들어야함.
                 if (x == '\n' || x == EOF || x == '\0')
                         break;
@@ -116,7 +118,6 @@ int main(void)
                         //숫자 * 괄호 or 괄호 * 괄호 or 음수 부호 * 괄호
                         if (('0' <= pre && pre <= '9') || pre == ')' || pre == '-') {
                                 stackpush(operator, '*');
-                                pre = x; //이전 문자(pre) 업데이트
                         }
                         stackpush(operator, x);
                         gwalho+=1;
