@@ -196,7 +196,6 @@ int main(void)
                                 stackpush(operator,'+');
                         stackpush(operator, x);
                 }
-                
         }  
         while (operator -> next != NULL) {
                 char oper = stackpop(operator);
