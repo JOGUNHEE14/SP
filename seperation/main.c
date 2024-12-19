@@ -91,8 +91,17 @@ int main(void)
                                                         result_number -> data = '+';
                                                         push(numbers,result_number);
                                                 }
-                                                else {
+                                                else if(front_number -> data == '-' && rear_number -> data == '-') {
+                                                        result_number = plus(front_number,rear_number);
+                                                        result_number -> data = '-';
+                                                        push(numbers,result_number);
+                                                }
+                                                else if (front_number -> data == '+' && rear_number -> data == '-'){
                                                         result_number = minus(front_number,rear_number);
+                                                        push(numbers,result_number);
+                                                }
+                                                else  {
+                                                        result_number = minus(rear_number,front_number);
                                                         push(numbers,result_number);
                                                 }
                                         }
@@ -160,8 +169,17 @@ int main(void)
                                                         result_number -> data = '+';
                                                         push(numbers,result_number);
                                                 }
-                                                else {
+                                                else if (front_number -> data == '-' && rear_number -> data == '-'){
+                                                        result_number = plus(front_number,rear_number);
+                                                        result_number -> data = '-';
+                                                        push(numbers,result_number);
+                                                }
+                                                else if (front_number -> data == '+' && rear_number -> data == '-'){
                                                         result_number = minus(front_number,rear_number);
+                                                        push(numbers,result_number);
+                                                }
+                                                else {
+                                                        result_number = minus(rear_number,front_number);
                                                         push(numbers,result_number);
                                                 }
                                         }
@@ -186,6 +204,8 @@ int main(void)
 
                 if (oper == '-') {
                         rear_number->data = '-';
+                        if (isEmpty(numbers))
+                                stackpop(operator);
                         push(numbers,rear_number);
                 }
                 else if (oper == '+') {
@@ -195,13 +215,23 @@ int main(void)
                         }
                         else
                                 front_number = pop(numbers);
+                        
                         if (front_number -> data == '+' && rear_number -> data == '+') {
                                 result_number = plus(front_number,rear_number);
                                 result_number -> data = '+';
                                 push(numbers,result_number);
                         }
-                        else {
+                        else if (front_number -> data == '-' && rear_number -> data == '-') {
+                                result_number = plus(front_number,rear_number);
+                                result_number -> data = '-';
+                                push(numbers,result_number);
+                        }
+                        else if (front_number -> data == '+' && rear_number -> data == '-'){
                                 result_number = minus(front_number,rear_number);
+                                push(numbers,result_number);
+                        }
+                        else {
+                                result_number = minus(rear_number,front_number);
                                 push(numbers,result_number);
                         }
                 }
