@@ -136,7 +136,6 @@ int main(void)
                                 rear_number = pop(numbers);
                                 if (oper == '-') {
                                         rear_number->data = '-';
-                                        push(numbers,front_number);
                                         push(numbers,rear_number);
                                 }
                                 else if (oper == '+') {
@@ -172,13 +171,18 @@ int main(void)
         while (operator -> next != NULL) {
                 char oper = stackpop(operator);
                 rear_number = pop(numbers);
-                front_number = pop(numbers);
+
                 if (oper == '-') {
                         rear_number->data = '-';
-                        push(numbers,front_number);
                         push(numbers,rear_number);
                 }
                 else if (oper == '+') {
+                        if (isEmpty(numbers)) {
+                                push(numbers,rear_number);
+                                continue;
+                        }
+                        else
+                                front_number = pop(numbers);
                         if (front_number -> data == '+' && rear_number -> data == '+') {
                                 result_number = plus(front_number,rear_number);
                                 result_number -> data = '+';
@@ -190,6 +194,7 @@ int main(void)
                         }
                 }
                 else if (oper == '*') {
+                        front_number = pop(numbers);
                         result_number = multiplication(front_number, rear_number);
                         push(numbers,result_number);
                 }
