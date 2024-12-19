@@ -38,6 +38,8 @@ int main(void)
                         struct inforNode *number = init();
                         if (pre == '-') {
                                 number -> data = '-';
+                                if (isEmpty(numbers))
+                                        stackpop(operator);
                         }
                         pre = x;
                         //data에 부호 넣어야 하는데 대충 플러스로 함
@@ -72,8 +74,11 @@ int main(void)
                                         break;
                                 
                                 rear_number = pop(numbers);
+                                
                                 if (oper == '-') {
                                         rear_number -> data = '-';
+                                        if (isEmpty(numbers))
+                                                stackpop(operator);
                                         push(numbers,rear_number);
                                 }
                                 else if (oper == '+') {
@@ -103,6 +108,11 @@ int main(void)
                         else if (operator->next != NULL && operator -> next -> data == '*') {
                                 stackpop(operator);
                                 push(numbers,multiplication(pop(numbers),pop(numbers)));
+                                if (operator->next != NULL && operator -> next -> data == '-') {
+                                        numbers -> next -> data -> data = stackpop(operator);
+                                        if (isEmpty(numbers))
+                                                stackpop(operator);
+                                }
                         }
                 }
 
@@ -136,6 +146,8 @@ int main(void)
                                 rear_number = pop(numbers);
                                 if (oper == '-') {
                                         rear_number->data = '-';
+                                        if (isEmpty(numbers))
+                                                stackpop(operator);
                                         push(numbers,rear_number);
                                 }
                                 else if (oper == '+') {
