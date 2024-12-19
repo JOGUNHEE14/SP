@@ -82,27 +82,6 @@ char listlpop(struct list *target)
         return popData;
 }
 
-int priority(struct stackNode *target, char com) {
-        char result = target -> next -> data;
-        char compare = com;
-        
-        if (result =='*')
-                result += 5;
-        else if (result == '+')
-                result += 2;
-        
-        if (compare == '*')
-                compare += 5;
-        else if (com == '+')
-                compare += 2;
-        
-        if (result < compare)
-                return 2;
-        else if (result == compare)
-                return 1;
-        return 0;
-}
-
 void initQueue(struct queueNode* head) {
     head = NULL; //큐가 비어있음
 }
@@ -162,4 +141,25 @@ char stackpop(struct stackNode *target)
         free(popNode);
 
         return popData;
+}
+
+int priority(struct stackNode *target, char com) {
+        char result = target -> next -> data;
+        char compare = com;
+        
+        if (result =='*')
+                result += 5;
+        else if (result == '+')
+                result += 2;
+        
+        if (compare == '*')
+                compare += 5;
+        else if (com == '+')
+                compare += 2;
+        
+        if (result < compare)
+                return 2;
+        else if (result == compare)
+                return 1;
+        return 0;
 }
