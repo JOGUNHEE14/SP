@@ -9,8 +9,8 @@ int priority(struct stackNode *target, char com) {
         
         if (com == '*')
                 com += 5;
-        else if (result == '+')
-                result += 2;
+        else if (com == '+')
+                com += 2;
         
         if (result < com)
                 return 2;
