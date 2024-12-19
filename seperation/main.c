@@ -15,7 +15,12 @@ int main(void)
         numbers -> next = NULL;
 
         FILE *file = fopen("tmp.txt", "r");
-        printf("파일을 정상적으로 열었습니다.\n");
+        if (file != NULL)
+                printf("파일을 정상적으로 불러왔습니다.\n");
+        else {
+                printf("파일 불러오기를 실패했습니다. 사용자입력을 받습니다.\n");
+                file = stdin;
+        }
 
         
         printf("====== Welcome to infinite calculator! ======\n");
