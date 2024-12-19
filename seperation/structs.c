@@ -83,20 +83,22 @@ char listlpop(struct list *target)
 }
 
 int priority(struct stackNode *target, char com) {
-        char result = (target -> next) -> data;
+        char result = target -> next -> data;
+        char compare = com;
+        
         if (result =='*')
                 result += 5;
         else if (result == '+')
                 result += 2;
         
-        if (com == '*')
-                com += 5;
-        else if (result == '+')
-                result += 2;
+        if (compare == '*')
+                compare += 5;
+        else if (com == '+')
+                compare += 2;
         
-        if (result < com)
+        if (result < compare)
                 return 2;
-        else if (result == com)
+        else if (result == compare)
                 return 1;
         return 0;
 }
